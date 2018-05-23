@@ -1,0 +1,111 @@
+{template "content","header_kx"}
+
+<link rel="stylesheet" type="text/css" href="/public/css/gppage.css">
+
+<script>
+	function gettable (code, t) {
+		var src = 'http://image.sinajs.cn/newchart/'+ t +'/n/'+ code +'.gif';
+		$("#chartbox img").attr("src", src);
+	}
+</script>
+<div id="topb" class="basicinfo">
+	<div class="warp">
+		<div class="info info1">
+			<div class="gp_logo"><img src="http://yuncaijingrest.oss-cn-hangzhou.aliyuncs.com/stock/sz000711.png"></div>
+			<div class="r">
+				<div class="name">{$shareinfo[name]}</div>
+				<div class="code">{$shareinfo[code]}</div>
+			</div>
+		</div>
+		<div class="info info2 {$shareinfo[color]}">
+			<div class="trade">{$shareinfo[trade]}</div>
+			<div class="change"><span>{$shareinfo[pricechange]}</span><span class="percent">{$shareinfo[changepercent]}%</span></div>
+		</div>
+		<div class="info info3">
+			<p><span>昨收：</span>{$shareinfo[settlement]}</p>
+			<p><span>今开：</span>{$shareinfo[open]}</p>
+			<p><span>最高：</span>{$shareinfo[high]}</p>
+			<p><span>最低：</span>{$shareinfo[low]}</p>
+			<p><span>成交量：</span>{bignum($shareinfo[amo])}</p>
+			<p><span>总市值：</span>{bignum($shareinfo[mktcap])}</p>
+			<p><span>流通市值：</span>{bignum($shareinfo[nmc])}</p>
+			<p><span>换手率：</span>{round($shareinfo[turnoverratio], 2)}%</p>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	
+	<div class="news">
+		<div class="reltab">
+			<ul>
+				<li>最新消息</li>
+				<div class="clear"></div>
+			</ul>
+		</div>
+		<ul class="listcont">
+			{loop $plist $v}
+			<li>
+				<div class="time">
+					<p>{showtime($v['inputtime'])}</p>
+				</div>
+				<div class="theme_list_con">
+					<div class="title">
+						<a href="{$v[url]}" class="view" data-url="&catid={$v[catid]}&id={$v[id]}" name="titleName" class="view title_name ">
+							{$v[title]}
+						</a>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</li>
+			{/loop}
+		</ul>
+	</div>
+	<div class="cenWarp">
+		<div class="rightwarp">
+			<div class="videos">
+				<h3>股票视频</h3>
+				<div class="cont"></div>
+			</div>
+		</div>
+
+		<div class="gptable">
+			<div id="gptable_warp">
+				<div class="head">
+					<div class="tab">
+						<span class="daily" onclick="gettable('{$shareinfo[symbol]}', 'min')">分时线</span>
+						<span class="day" onclick="gettable('{$shareinfo[symbol]}', 'daily')">日K线</span>
+						<span class="week" onclick="gettable('{$shareinfo[symbol]}', 'weekly')">周K线</span>
+						<span class="month" onclick="gettable('{$shareinfo[symbol]}', 'monthly')">月K线</span>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div id="chartbox">
+					<img src="http://image.sinajs.cn/newchart/daily/n/sh601006.gif"/>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="clear"></div>
+</div>
+
+<div class="show_page">
+	<div class="head">
+		<h2></h2>
+		<p><span class="date"></span></p>
+	</div>
+	<div class="warp">
+		<div class="cont"></div>
+	</div>
+</div>
+<div class="show_page_bg"></div>
+<div class="loadbox">
+	<div class="loader"></div>
+	<div class="fullbg"></div>
+</div>
+
+<script src="/public/js/jquery.nicescroll.js"></script>
+<script type="text/javascript" src="/public/js/gppage.js"></script>
+<script type="text/javascript" src="http://hq.sinajs.cn/list={get_gpcity($shareinfo[code])}{$shareinfo[code]}" charset="gb2312"></script>
+<script language="javascript" src="http://pqt.zoosnet.net/JS/LsJS.aspx?siteid=PQT35234013&float=0&lng=cn"></script>

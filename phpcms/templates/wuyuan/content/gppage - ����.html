@@ -1,0 +1,173 @@
+{template "content","header_kx"}
+
+<link rel="stylesheet" type="text/css" href="/public/css/gppage.css">
+
+<div id="topb" class="basicinfo">
+	<div class="warp">
+		<div class="info info1">
+			<div class="gp_logo"><img src="http://yuncaijingrest.oss-cn-hangzhou.aliyuncs.com/stock/sz000711.png"></div>
+			<div class="r">
+				<div class="name">{$shareinfo[name]}</div>
+				<div class="code">{$shareinfo[code]}</div>
+			</div>
+		</div>
+		<div class="info info2 {$shareinfo[color]}">
+			<div class="trade">{$shareinfo[trade]}</div>
+			<div class="change"><span>{$shareinfo[pricechange]}</span><span class="percent">{$shareinfo[changepercent]}%</span></div>
+		</div>
+		<div class="info info3">
+			<p><span>昨收：</span>{$shareinfo[settlement]}</p>
+			<p><span>今开：</span>{$shareinfo[open]}</p>
+			<p><span>最高：</span>{$shareinfo[high]}</p>
+			<p><span>最低：</span>{$shareinfo[low]}</p>
+			<p><span>成交量：</span>{bignum($shareinfo[amo])}</p>
+			<p><span>总市值：</span>{bignum($shareinfo[mktcap])}</p>
+			<p><span>流通市值：</span>{bignum($shareinfo[nmc])}</p>
+			<p><span>换手率：</span>{round($shareinfo[turnoverratio], 2)}%</p>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	
+	<div class="news">
+		<div class="reltab">
+			<ul>
+				<li>最新消息</li>
+				<li>分析文章</li>
+				<div class="clear"></div>
+			</ul>
+		</div>
+		<ul class="listcont">
+			{loop $plist $v}
+			<li>
+				<div class="time">
+					<p>{showtime($v['inputtime'])}</p>
+				</div>
+				<div class="theme_list_con">
+					<div class="title">
+						<a href="{$v[url]}" class="view" data-url="&catid={$v[catid]}&id={$v[id]}" name="titleName" class="title_name ">
+							{$v[title]}
+						</a>
+					</div>
+					<p class="desc">{$v[description]}</p>
+				</div>
+				<div class="clear"></div>
+			</li>
+			{/loop}
+		</ul>
+	</div>
+	<div class="cenWarp">
+			
+		<div class="gptable">
+			<div id="gptable_warp">
+				<div class="head">
+					<div class="tab">
+						<span class="day">日线模式</span>
+						<span class="week">周线模式</span>
+						<span class="month">月线模式</span>
+						<span id="fullbtn">全屏</span>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div id="chartbox">
+					<div id="chart" style="height: 100%"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="gpp_right">
+			<div class="baojia">
+				<h2>行情报价</h2>
+				<div class="cont">
+					<table id="pa1" class="line22 w100p text-indent10" cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr><td>卖五</td><td id="gts5a" class="red"></td><td id="gts5b"></td><td id="gts5c" class=""></td></tr>
+							<tr><td>卖四</td><td id="gts4a" class="red"></td><td id="gts4b"></td><td id="gts4c"></td></tr>
+							<tr><td>卖三</td><td id="gts3a" class="red"></td><td id="gts3b"></td><td id="gts3c" class=""></td></tr>
+							<tr><td>卖二</td><td id="gts2a" class="red"></td><td id="gts2b"></td><td id="gts2c" class=""></td></tr>
+							<tr><td>卖一</td><td id="gts1a" class="red"></td><td id="gts1b"></td><td id="gts1c" class=""></td></tr>
+							<tr><td>买一</td><td id="gtb1a" class="red"></td><td id="gtb1b"></td><td id="gtb1c" class=""></td></tr>
+							<tr><td>买二</td><td id="gtb2a" class="red"></td><td id="gtb2b"></td><td id="gtb2c" class=""></td></tr>
+							<tr><td>买三</td><td id="gtb3a" class="red"></td><td id="gtb3b"></td><td id="gtb3c" class=""></td></tr>
+							<tr><td>买四</td><td id="gtb4a" class="red"></td><td id="gtb4b"></td><td id="gtb4c" class=""></td></tr>
+							<tr><td>买五</td><td id="gtb5a" class="red"></td><td id="gtb5b"></td><td id="gtb5c" class=""></td></tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	<div class="clear"></div>
+</div>
+
+<script type="text/javascript" src="http://hq.sinajs.cn/list={get_gpcity($shareinfo[code])}{$shareinfo[code]}" charset="gb2312"></script>
+<script>
+	var gpinfo = {
+		code : '{$shareinfo[code]}',
+		city : '{get_gpcity($shareinfo[code])}',
+		citycode : '{get_gpcity($shareinfo[code],"code")}'
+	}
+	!function(){
+		var otherinfo = hq_str_{get_gpcity($shareinfo[code],"code")};
+		otherinfo = otherinfo.split(",");
+		console.log(otherinfo);
+		
+		$('.price').html(otherinfo[3]);
+		$('.other td').eq(0).html(otherinfo[1]);
+		$('.other td').eq(1).html(parseInt(otherinfo[8]/100) + '手');
+		$('.other td').eq(2).html({$get_shareinfo['zhenfu']});
+		$('.other td').eq(3).html(otherinfo[4]);
+		var cje = otherinfo[9]/10000;
+		$('.other td').eq(4).html(cje.toFixed(2) + '万');
+		$('.other td').eq(5).html(wan(otherinfo[8]*100/gpinfo.ltgb));
+		$('.other td').eq(6).html(otherinfo[5]);
+		$('.other td').eq(7).html(wan(otherinfo[3]*gpinfo.ltgb));
+		$('.other td').eq(9).html(otherinfo[2]);
+		$('.other td').eq(10).html(wan(gpinfo.ltgb));
+		$('.other td').eq(11).html({$get_shareinfo['shiying']});
+		
+		
+		function wan(num){
+			var num = num/10000
+			return num.toFixed(2) + '万';
+		}
+		
+		function savatwo(num){
+			var num = parseFloat(num);
+			return num.toFixed(2);
+		}
+		
+		//报价
+		//卖
+		$('.baojia tr:eq(0) td:eq(1)').html(savatwo(otherinfo[29]));
+		$('.baojia tr:eq(0) td:eq(2)').html(Math.round(otherinfo[28]/100));
+		$('.baojia tr:eq(1) td:eq(1)').html(savatwo(otherinfo[27]));
+		$('.baojia tr:eq(1) td:eq(2)').html(Math.round(otherinfo[26]/100));
+		$('.baojia tr:eq(2) td:eq(1)').html(savatwo(otherinfo[25]));
+		$('.baojia tr:eq(2) td:eq(2)').html(Math.round(otherinfo[24]/100));
+		$('.baojia tr:eq(3) td:eq(1)').html(savatwo(otherinfo[23]));
+		$('.baojia tr:eq(3) td:eq(2)').html(Math.round(otherinfo[22]/100));
+		$('.baojia tr:eq(4) td:eq(1)').html(savatwo(otherinfo[21]));
+		$('.baojia tr:eq(4) td:eq(2)').html(Math.round(otherinfo[20]/100));
+		//买
+		$('.baojia tr:eq(5) td:eq(1)').html(savatwo(otherinfo[11]));
+		$('.baojia tr:eq(5) td:eq(2)').html(Math.round(otherinfo[10]/100));
+		$('.baojia tr:eq(6) td:eq(1)').html(savatwo(otherinfo[13]));
+		$('.baojia tr:eq(6) td:eq(2)').html(Math.round(otherinfo[12]/100));
+		$('.baojia tr:eq(7) td:eq(1)').html(savatwo(otherinfo[15]));
+		$('.baojia tr:eq(7) td:eq(2)').html(Math.round(otherinfo[14]/100));
+		$('.baojia tr:eq(8) td:eq(1)').html(savatwo(otherinfo[17]));
+		$('.baojia tr:eq(8) td:eq(2)').html(Math.round(otherinfo[16]/100));
+		$('.baojia tr:eq(9) td:eq(1)').html(savatwo(otherinfo[19]));
+		$('.baojia tr:eq(9) td:eq(2)').html(Math.round(otherinfo[18]/100));
+
+	}();
+</script>
+<script src="/public/js/jquery.nicescroll.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+{js('share_echarts.js')}

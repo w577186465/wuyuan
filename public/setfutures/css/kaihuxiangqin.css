@@ -1,0 +1,80 @@
+﻿@charset "utf-8";
+/* CSS Document */
+* { padding: 0; margin: 0; }
+.box { width: 100%; }
+.box1 { width: 100%; height: 396px; background: url(../images/khxq0628.jpg?v=20170818) no-repeat center; position: relative; }
+.box2 { width: 100%; height: 180px; background: url(../images/tkh_03.jpg?v=20170818) no-repeat center;}
+.box3 { width: 100%; height: 167px; background: url(../images/kh_04.jpg?v=20170818) no-repeat center; }
+.box4 { width: 100%; height: 173px; background: url(../images/kh_05.jpg?v=20170818) no-repeat center; }
+.box5 { width: 100%; height: 162px; background: url(../images/kh_06.jpg?v=20170818) no-repeat center; }
+.box6 { width: 100%; height: 189px; background: url(../images/kh_07.jpg?v=20170818) no-repeat center; }
+.box7 { width: 100%; height: 193px; background: url(../images/kh_08.jpg?v=20170818) no-repeat center; }
+.box8 { width: 100%; height: 190px; background: url(../images/lkh_09.jpg?v=20170818) no-repeat center; }
+.box9 { width: 100%; height: 170px; background: url(../images/kh_11.jpg?v=20170818) no-repeat center; }
+.box10 { width: 100%; height: 196px; background: url(../images/kh_12.jpg?v=20170818) no-repeat center; }
+.box11{width: 100%;height: 228px;margin-top: 15px; margin-bottom: 50px;}
+.box11 ul{width: 1200px;margin: 0 auto;}
+.box11 ul li{width: 179px;height: 95px;border-radius:4px;overflow:hidden;float: left;margin-right: 25px;margin-top: 17px;cursor: pointer}
+
+.list1{background:url(../images/kh_03.jpg?v=20170818) no-repeat center;}
+.list2{background:url(../images/yhkh_05.jpg?v=20170818) no-repeat center;}
+.list3{background:url(../images/yhkh_07.jpg?v=20170818) no-repeat center;}
+.list4{background:url(../images/kh_09.jpg?v=20170818) no-repeat center;}
+.list5{background:url(../images/yhkh_11.jpg?v=20170818) no-repeat center;}
+.list6{background:url(../images/kh_13.jpg?v=20170818) no-repeat center;}
+.list7{background:url(../images/kh_21.jpg?v=20170818) no-repeat center;}
+.list8{background:url(../images/kh_22.jpg?v=20170818) no-repeat center;}
+.cooperate{height: 193px;width: 100%;text-align: center;}
+.cooperate button {width: 462px;height: 80px;font-size: 30px;color:#fff;border-radius: 4px;margin-bottom: 113px;cursor: pointer;}
+#ewm{
+    position: absolute;
+    bottom:72px;
+    left: 100px;
+    background-color:#fff;
+}
+.box1 #kh_tc{float: right;margin-right: 40px;margin-top: 17px;}
+/*开户弹窗*/
+#kh_tc{width: 258px;height: 318px;padding: 22px 32px;background-color: #fff;border-radius: 4px;}
+#kh_tc .kh_wy{height: 28px;line-height: 28px;width: 100%;font-size: 28px;font-weight: 600;text-align: center;margin-bottom: 14px;}
+#kh_tc .kh_tj{width: 100%;text-align: center;height: 14px;line-height: 14px;font-size: 14px;font-weight: 500;margin-bottom: 20px;}
+#kh_tc ul li .inp {
+    height:33px;
+    line-height:33px;
+    border: 1px solid #D6D6D6;
+    color: #343434;
+    padding-left: 5px;
+    width: 249px;
+}
+#kh_tc ul li {margin-bottom: 13px;}
+#kh_tc ul li .yzm{width: 150px;}
+#kh_tc .kh_button{display: block;width: 248px;height: 41px;background-color:#FB5A5C;font-size: 20px;color:#fff;border-radius: 4px;margin-top: 19px;cursor: pointer;}
+#kh_tc .zzkh_button{display: block;width: 248px;height: 41px;background-color:#26A3DE;font-size: 20px;color:#fff;border-radius: 4px;margin-top: 9px;cursor: pointer;}
+#is_Tc{
+    display: none;
+    width: 249px;
+    height: 259px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 888;
+    margin: -124.5px 0 0 -129.5px;
+    color: white;
+    background-color: white;
+    border-radius: 6px;
+}
+.is_cha{
+    display: inline-block;
+    line-height: 20px;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    font-size: 26px;
+    float: right;
+    cursor: pointer;
+    color:red;
+    position: absolute;
+    right: -57px;
+    top: 8px;
+}
+.is_cha:hover{font-weight: 600}
+

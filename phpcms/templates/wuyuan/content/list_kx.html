@@ -1,0 +1,155 @@
+{template "content","header_kx"}
+
+<link rel="stylesheet" type="text/css" href="/public/css/kxlist.css">
+<div class="loadbox">
+	<div class="loader"></div>
+	<div class="fullbg"></div>
+</div>
+<div class="container">
+	<div class="newRight">
+		<div class="gzh">
+			<img src="/public/img/gzh.png">
+		</div>
+		<ul class="listtj newSider">
+			<h3 class="title">推荐新闻</h3>
+			{pc:content action="position" posid="18" num="5" order="listorder desc"}
+			{loop $data $v}
+			<li class="theme_list clearfix">
+				<div class="theme_list_con">
+					<h4>
+						<a href="{$v[url]}" class="view" data-url="&catid={$v[catid]}&id={$v[id]}" name="titleName" class="title_name ">
+							{$v[title]}
+						</a>
+					</h4>
+					<p class="desc">{$v[description]}</p>
+				</div>
+				<div class="time">
+					<p>{kxtime($v["inputtime"])}</p>
+				</div>
+				<div class="clear"></div>
+			</li>
+			{/loop}
+			{/pc}
+		</ul>
+
+		<div class="newSider video">
+			<h3 class="title">天天涨停</h3>
+			<div class="videos"></div>
+			<a href="http://video.hpoption.net/share/" class="more" target="_blank">更多视频</a>
+		</div>
+		<div class="newSider">
+			<h3 class="title">交易心得</h3>
+			<div class="newSList">
+				{pc:content action="lists" catid="11" num="10" order="inputtime DESC" cache="3600"}
+				{loop $data $r}
+					<li>
+						<span class="circle"></span>
+						<a href="{$r[url]}" name="titleName">{$r[title]}</a>
+					</li>
+				{/loop}
+				{/pc}
+			</div>
+		</div>
+	</div>
+	<div class="newLeft">
+		<div class="">
+
+		</div>
+		{if $parentid != 0}
+		<div class="cateson">
+			<?php 
+				$pararr = explode(',',$CATEGORYS[$catid]['arrparentid']);
+			?>
+			<ul>
+				{pc:content action="category" catid="$pararr[1]"}
+				<li {if $pararr[1] == $catid}class="on"{/if}>
+					<a href="{$CATEGORYS[$pararr[1]][url]}">全部</a>
+				</li>
+				{loop $data $v}
+					<?php 
+						$paron = isset($pararr[2]) && $pararr[2] == $v['catid']; 
+					?>
+					<li {if $paron || $catid == $v[catid]}class="on"{/if}>
+						<a href="{$v[url]}">{$v[catname]}</a>
+					</li>
+				{/loop}
+				{/pc}
+				<div class="clear"></div>
+			</ul>
+			{if isset($pararr[2])}
+			<ul>
+				{pc:content action="category" catid="$pararr[2]"}
+					<li>
+						<a href="{$CATEGORYS[$pararr[2]][url]}">全部</a>
+					</li>
+				{loop $data $v}
+					<li {if $catid == $v[catid]}class="on"{/if}>
+						<a href="{$v[url]}">{$v[catname]}</a>
+					</li>
+				{/loop}
+				{/pc}
+				<div class="clear"></div>
+			</ul>
+			{/if}
+		</div>
+		{/if}
+		<div class="newList kxlist">
+			<ul class="listcont">
+				{pc:content action="lists" catid="$catid" num="20" page="$page" moreinfo="1" order="inputtime desc"}
+				{loop $data $v}
+				<li class="theme_list clearfix">
+					<div class="time">
+						<p>{kxtime($v[inputtime])}</p>
+					</div>
+					<div class="theme_list_con">
+						<div class="desc fs14">
+							<h2>
+								<a href="{$v[url]}" class="view fs14" data-url="&catid={$v[catid]}&id={$v[id]}" name="titleName" class="title_name ">
+									【{$v[title]}】
+								</a>
+							</h2>
+							{$v[description]}
+						</div>
+						<div class="relgp">
+							{relgplist($v[relevantgp])}
+						</div>
+					</div>
+					<div class="clear"></div>
+				</li>
+				{/loop}
+				{/pc}
+				<div class="load_more btn">加载更多</div>
+				<div class="load_more_loader_box">
+					<div id="loading-2" class="load_more_loader">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+			</ul>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="show_page">
+	<div class="head">
+		<h2></h2>
+		<p><span class="date"></span><a href="#" class="detailed">详细信息</a></p>
+	</div>
+	<div class="warp">
+		<div class="cont"></div>
+	</div>
+</div>
+<div class="show_page_bg"></div>
+<div id="tipmusic"></div>
+<script type="text/javascript">
+	var info = {
+		catid : {$catid}
+	}
+</script>
+<script src="/public/js/jquery.nicescroll.js"></script>
+<script src="/public/js/kxlist.js"></script>
+<script type="text/javascript" src="/public/js/client.js"></script>
+{template "content","footer_kx"}

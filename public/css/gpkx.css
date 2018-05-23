@@ -1,0 +1,196 @@
+.relgp {
+	max-height:78px;
+}
+.relgp a {
+	border:1px solid #E83030;
+	color:#E83030;
+	float:left;
+	height:27px;
+	line-height:27px;
+	padding:0 10px;
+	margin:10px 10px 0 0;
+	position:relative;
+}
+.relgp a:nth-child(n+9){
+	display:none;
+}
+.relgp a:hover {
+	color:#fff;
+	background:#E83030;
+	transition: all 0.3s;
+}
+.relgp a em {
+	display:none;
+	transition:all 0.8;
+	left:0;
+	top:-155px;
+	position:absolute;
+	background:#fff;
+	padding:10px;
+	z-index:99;
+	width:250px;
+	height:125px;
+}
+.relgp a:hover em {
+	display:block;
+}
+
+/* page 布局 */
+.gpp_right {
+	float:left;
+	margin-left:10px;
+	width:180px;
+}
+
+/* 消息选卡 */
+.reltab {
+	background: #fafafa;
+    padding: 0 30px;
+    height: 49px;
+    line-height: 49px;
+}
+.reltab ul li {
+	float:left;
+	cursor:pointer;
+	padding-right:20px;
+}
+
+.sharesPage {
+	width:1055px;
+	margin:20px auto;
+}
+.sharesPage .news {
+	width:280px;
+	background:#fff;
+	float:left;
+	margin-right:10px;
+}
+.sharesPage .listcont {
+	padding:15px;
+	height:415px;
+	overflow-y:auto;
+}
+
+/* cenwarp */
+.sharesPage .cenWarp {
+	float:left;
+}
+.sharesPage .cenWarp .gptable {
+	background:#fff;
+	padding:15px;
+}
+.sharesPage .cenWarp .gptable .tab {
+	background:#fff;
+	margin-bottom:10px;
+	padding-bottom:10px;
+	border-bottom:1px solid #E8E8E8;
+}
+.sharesPage .cenWarp .gptable .tab span {
+	cursor:pointer;
+	float:left;
+	height:25px;
+	line-height:25px;
+	padding:0 15px;
+}
+.sharesPage .cenWarp .gptable .tab span:hover, .sharesPage .cenWarp .gptable .tab span.on {
+	background:#25ABEA;
+	color:#fff;
+}
+.sharesPage .cenWarp #showWarp {
+	width:545px;
+	height:300px;
+}
+
+/* 信息 */
+.sharesPage .info {
+	background:#fff;
+	margin-bottom:10px;
+	padding:15px;
+}
+.sharesPage .jbinfo {
+	float:left;
+	margin-right:10px;
+	border-right:1px solid #ECECEC;
+	padding:5px 10px 5px 0;
+}
+.sharesPage .jbinfo h2 span {
+	margin-left:10px;
+}
+.sharesPage .name {
+	
+}
+.sharesPage .name span {
+	font-size:14px;
+	font-weight:500;
+}
+.sharesPage .price {
+	font-size: 18px;
+    color: #f00;
+    font-weight: bold;
+    height: 38px;
+    line-height: 38px;
+    float: left;
+}
+.sharesPage .zhangting {
+	margin-top:10px;
+}
+.sharesPage .change {
+    margin-left: 50px;
+	text-align:right;
+}
+.sharesPage .other {
+	float:left;
+}
+.sharesPage .other table {
+	width:375px;
+	color:#6B6B6B;
+}
+.sharesPage .other table th {
+	text-align:right;
+	font-weight:500;
+}
+
+/* 报价 */
+.baojia {
+	background:#fff;
+}
+.baojia h2 {
+	height:35px;
+	line-height:35px;
+	background:#2CA0D6;
+	padding:0 10px;
+	color:#fff;
+	font-size:14px;
+}
+.baojia .cont {
+	padding:10px;
+}
+.baojia table {
+	width:100%;
+}
+.baojia table tr {
+	height:27px;
+}
+
+/* 图表 */
+#gptable_warp {
+	width:100%;
+	height:100%;
+	background:#fff;
+}
+#gptable_warp.full {
+	position: fixed;
+	top:0;
+	left:0;
+}
+#chartbox {
+	height:300px;
+}
+#gptable_warp.full #chartbox {
+	position:absolute;
+	height:auto;
+	top:50px;
+	left:0;
+	right:0;
+	bottom:0;
+}

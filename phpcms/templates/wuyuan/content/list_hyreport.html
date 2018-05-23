@@ -1,0 +1,82 @@
+<?php
+	$industry = getindustry();
+?>
+
+{template "content","header"}
+{css('hyreport.css')}
+<div id="hyreport" class="newWarp">
+	<div class="headbox">
+		<div class="warp">
+			<div class="newListhead item">
+				<h2>{$catname}</h2>
+			</div>
+			<div class="newCrumbs item">
+				<a href="{siteurl($siteid)}">首页</a><span> > </span>{catpos($catid)} <span>{$title}</span>
+			</div>
+			{if $parentid != 0}
+			<div class="cateson item">
+				<?php 
+					$pararr = explode(',',$CATEGORYS[$catid]['arrparentid']);
+				?>
+				
+				<ul>
+					<li>
+						<a href="#">全部</a>
+					</li>
+					{loop $industry $v}
+						<li>
+							<a href="{$v[dfcfval]}">{$v[name]}</a>
+						</li>
+					{/loop}
+					<div class="clear"></div>
+				</ul>
+				{if isset($pararr[2])}
+				<ul>
+					{pc:content action="category" catid="$pararr[2]"}
+						<li>
+							<a href="{$CATEGORYS[$pararr[2]][url]}">全部</a>
+						</li>
+					{loop $data $v}
+						<li {if $catid == $v[catid]}class="on"{/if}>
+							<a href="{$v[url]}">{$v[catname]}</a>
+						</li>
+					{/loop}
+					{/pc}
+					<div class="clear"></div>
+				</ul>
+				{/if}
+			</div>
+			{/if}
+		</div>
+	</div>
+		<div class="list">
+			<table>
+				<tbody>
+					{pc:content action="lists" catid="$catid" num="50" page="$page" order="inputtime asc"}
+					<tr>
+						<th>报告日期</th>
+						<th>行业</th>
+						<th>涨跌幅</th>
+						<th>研报</th>
+						<th>评级类别</th>
+						<th>评级变动</th>
+						<th>机构名称</th>
+					</tr>
+					{loop $data $v}
+					<tr>
+						<td class="td date">{date("Y-m-d", $v[inputtime])}</td>
+						<td class="td indname">{$v[indname]}</td>
+						<td class="td fluctuation">{$v[fluctuation]}</td>
+						<td class="td title"><a href="{$v[url]}">{$v[title]}</a></td>
+						<td class="td pjtype">{php echo $v[pjtype]=="" ? "无" : $v[pjtype]}</td>
+						<td class="td pjchange">{$v[pjchange]}</td>
+						<td class="td insname">{$v[insname]}</td>
+					</tr>
+					{/loop}
+					{/pc}
+				</tbody>
+			</table>
+			{if $pages}<div class="pages">{$pages}</div>{/if}
+		</div>
+</div>
+{template "content","footer"}

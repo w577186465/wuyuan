@@ -1,0 +1,133 @@
+{template "content","header"}
+
+{css('news.css')}
+
+<div class="newWarp">
+
+	<div class="newLeft">
+
+		<div class="newListhead">
+
+			<h2>{$catname}</h2>
+
+		</div>
+
+		<div class="newCrumbs">
+
+			<a href="{siteurl($siteid)}">首页</a><span> > </span>{catpos($catid)} <span>{$title}</span>
+
+		</div>
+
+		<div class="newList">
+
+			<iframe id="iframe"  height="8000px"  width="100%"  frameborder="0" scrolling="no" src="http://www.jin10.com/example/jin10.com.html"></iframe>
+
+		</div>
+
+	</div>
+
+	
+
+	<div class="newRight">
+
+		<div class="newSider">
+
+			<h3 class="title">推荐关注</h3>
+
+			<div class="dingYue">
+
+				<img alt="" src="{pubimg('wxqrcode.jpg')}">
+
+				<p>关注 伍元交易 公众号<br></p>
+
+				<p>及时了解伍元交易动态，更有超值活动等你哦！</p>
+
+			</div>
+
+		</div>
+
+		<div class="newSider">
+
+			<h3 class="title">交易心得</h3>
+
+			<div class="newSList">
+
+				{pc:content action="lists" catid="11" num="10" order="updatetime DESC" cache="3600"}
+
+				{loop $data $r}
+
+					<li>
+
+						<span class="circle"></span>
+
+						<a href="{$r[url]}" name="titleName">{$r[title]}</a>
+
+					</li>
+
+				{/loop}
+
+				{/pc}
+
+			</div>
+
+		</div>
+
+		<div class="newSider">
+
+			<h3 class="title">市场分析</h3>
+
+			<div class="newSList">
+
+				{pc:content action="lists" catid="9" num="10" order="updatetime DESC" cache="3600"}
+
+				{loop $data $r}
+
+					<li>
+
+						<span class="circle"></span>
+
+						<a href="{$r[url]}" name="titleName">{$r[title]}</a>
+
+					</li>
+
+				{/loop}
+
+				{/pc}
+
+			</div>
+
+		</div>
+
+		<div class="newSider">
+
+			<h3 class="title">市场活动</h3>
+
+			<div class="newSList">
+
+				{pc:content action="lists" catid="10" num="10" order="updatetime DESC" cache="3600"}
+
+				{loop $data $r}
+
+					<li>
+
+						<span class="circle"></span>
+
+						<a href="{$r[url]}" name="titleName">{$r[title]}</a>
+
+					</li>
+
+				{/loop}
+
+				{/pc}
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="clear"></div>
+
+</div>
+
+{template "content","footer"}

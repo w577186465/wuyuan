@@ -1,0 +1,335 @@
+body {
+	background-color: #E9EDEF;
+	min-width: 830px;
+	background:  #000;
+}
+
+.fs12 {
+	font-size: 12px;
+}
+.fs14 {
+	font-size: 14px;
+}
+
+/* top */
+#top {
+	height: 55px;
+	line-height: 55px;
+	position: fixed;
+	width: 100%;
+	z-index: 10;
+	padding-left: 10px;
+	background-color: #2c50a9;
+}
+
+.leftwarp {
+	width: 130px;
+	background-color: #141C21;
+	position: fixed;
+	left: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.menu {
+	margin-top: 70px;
+}
+
+.menu li a {
+	color: #fff;
+	font-size: 14px;
+	display: block;
+	line-height: 39px;
+	padding: 0 15px;
+}
+
+.menu li ul {
+	display: none;
+}
+
+.menu li a.active, .menu li a:hover {
+	background-color: #2c50a9;
+}
+
+.newWarp {
+	margin: 70px 15px 0 140px;
+	position: relative;
+}
+
+.listcont li {
+	background-color: #fff;
+	margin-bottom: 10px;
+	position: relative;
+	padding: 10px 10px 10px 100px;
+}
+
+.listcont li h2 {
+	vertical-align: baseline;
+	display: inline;
+}
+
+.listcont li h2 a {
+	color: #2c50a9;
+}
+
+.listcont li h2 a:hover {
+	text-decoration: underline;
+}
+
+.listcont li .time {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 90px;
+	height: 100%;
+	background-color: #f6f6f6;
+	text-align: center;
+}
+
+.listcont li .time p {
+	height: 20px;
+	line-height: 20px;
+	position: absolute;
+	margin-top: -10px;
+	top: 50%;
+	left: 0;
+	text-align: center;
+	width: 100%;
+	color: #868686;
+}
+
+.listcont .desc {
+	color: #444;
+}
+
+/* 相关股票 */
+.listcont li .relgp {
+	margin-top: 10px;
+}
+.listcont li .relgp a {
+	position: relative;
+	color: #D22222;
+	margin-right: 10px;
+}
+
+.listcont li .relgp a em {
+	position: absolute;
+	bottom: 100%;
+	background-color: #fff;
+	padding: 5px;
+	display: none;
+}
+
+.listcont li .relgp a:hover em {
+	display: block;
+}
+
+.kxlist {
+	overflow: hidden;
+}
+
+.newRight {
+	width: 30%;
+	max-width: 350px;
+	min-width: 250px;
+	margin-left: 15px;
+	float: right;
+}
+
+/* silder */
+.newSider {
+	background-color: #fff;
+	padding-top: 36px;
+	margin-bottom: 10px;
+	position: relative;
+}
+.newSider h3.title {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	line-height: 36px;
+	background-color: #2c50a9;
+	color: #fff;
+	display: block;
+	padding: 0 10px;
+	font-size: 13px;
+}
+
+.listtj {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.listtj a {
+	color: #2c50a9;
+	font-weight: bold;
+}
+
+.listtj a:hover {
+	text-decoration: underline;
+}
+
+.listtj li {
+	padding: 10px;
+	margin-bottom: 5px;
+	border-top: 5px solid #E9EDEF;
+}
+
+.listtj li h4 {
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+
+.listtj .desc {
+	color: #444;
+}
+
+.listtj .time p {
+	margin-top: 5px;
+	text-align: right;
+	font-weight: bold;
+	color: #d22222;
+}
+
+.gzh {
+	background-color: #2c50a9;
+	margin-bottom: 15px;
+}
+.gzh img {
+	width: 100%;
+}
+
+.newSider .newSList li {
+	padding: 0 10px;
+	line-height: 25px;
+}
+
+.newSider .newSList {
+	padding: 10px 0;
+}
+
+.newSider .newSList li a {
+	padding: 10px 0;
+	color: #39569E;
+	font-weight: bold;
+}
+
+.newSider .newSList li a:hover {
+	text-decoration: underline;
+}
+
+.load_more {
+	height: 45px;
+	line-height: 45px;
+	text-align: center;
+	cursor: pointer;
+	font-size: 14px;
+	color: #525252;
+}
+
+.show_page {
+	width:700px;
+	background:#fff;
+	position:fixed;
+	top:20px;
+	left:50%;
+	margin-left:-350px;
+    transition: all 0.5s;
+	display:none;
+	z-index: 999;
+	border-radius: 5px;
+	overflow: hidden;
+}
+.show_page.show {
+	display:block;
+	transform: scale(1);
+}
+.show_page .head {
+	height:40px;
+	background:#2177B5;
+	padding:15px 20px;
+}
+.show_page .head h2 {
+	color:#fff;
+}
+.show_page .head p {
+	color:#B1CFE4;
+	margin-top:10px;
+}
+.show_page .cont {
+	padding:20px;
+	color:#666883;
+	font-size:14px;
+	overflow:hidden;
+}
+.show_page .cont img {
+	max-width:100%;
+}
+.show_page .relation {
+	padding:0 10px 10px 20px;
+	color:#666883;
+	font-size:14px;
+}
+.show_page .relation span {
+	margin-right:5px;
+}
+.show_page .relation span, .show_page .relation a {
+	float:left;
+	height:14px;
+	line-height:14px;
+	margin-bottom:15px;
+}
+..show_page .relation .noborder {
+	border:0;
+	padding:0;
+}
+.show_page .relation a {
+	width:188px;
+	overflow:hidden;
+	margin-right:10px;
+	color:#2177B5;
+}
+
+/* loading */
+.loader {
+	background: #fff url(/public/img/loading.gif) no-repeat center center;
+	padding: 6px;
+	z-index: 999;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	width: 64px;
+	height: 64px;
+	margin-left: -35px;
+	margin-top: -35px;
+	border-radius: 50%;
+}
+
+.fullbg {
+	background-color: #000;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	opacity: 0.6;
+	z-index: 998;
+}
+
+.loadbox {
+	display: none;
+}
+
+.show_page_bg {
+	background-color: #000;
+	opacity: 0.6;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	opacity: 0.6;
+	z-index: 998;
+	display: none;
+}

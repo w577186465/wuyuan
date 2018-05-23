@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=7">
+	<title>phpcms V9 - 后台管理中心</title>
+	<script type="text/javascript" src="http://www.kleyqq.com/public/js/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="jndu">
+	更新进度：<span class="over"></span>
+</div>
+<div class="update_btn">开始更新数据</div>
+<style>
+	.update_btn {
+		cursor:pointer;
+		height:30px;
+		line-height:30px;
+		background:#ddd;
+		width:100px;
+		text-align:center;
+		font-size:14px;
+	}
+</style>
+<script>
+	var info = {
+		num : {$pagenum}
+	}
+	var n = 1;
+	function upitem(page){
+		var itemurl = 'index.php?m=shares&c=admin&a=ajax_update&num=20&page=' + n;
+		$.ajax({url:itemurl, success:function(){
+				n++;
+				var jindu = Percentage(n,info.num);
+				$('.jndu .over').html(jindu);
+				if(n<=info.num) upitem(n);
+			}
+		});
+	}
+	$('.update_btn').click(function(){
+		upitem(1);
+	});
+	
+	function Percentage(number1, number2) { 
+		return (Math.round(number1 / number2 * 10000) / 100.00 + "%");
+	}
+</script>
+</body>
+</html>

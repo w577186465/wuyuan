@@ -1,0 +1,219 @@
+{template "content","header"}
+{css('news.css')}
+<div class="newWarp">
+	<div class="newLeft">
+		<div class="newListhead">
+			<h2>{$_GET[key]}</h2>
+		</div>
+		<div class="newCrumbs">
+			<a href="{siteurl($siteid)}">首页</a><span> > </span>{catpos($_GET[catid])} <span>{$_GET[key]} 历史信息</span>
+		</div>
+		
+		<div class="newList kxlist">
+			<ul class="listcont">
+				{loop $list $v}
+				<li class="theme_list clearfix">
+					<div class="time">
+						<?php
+							if(date('Y-m-d') == date('Y-m-d',$v['inputtime']))
+								$date = date('今天 H:i',$v['inputtime']);
+							else
+								$date = date('y-m-d H:i',$v['inputtime']);
+						?>
+						<p>{$date}</p>
+					</div>
+					<div class="theme_list_con">
+						<div class="title">
+							<a href="{$v[url]}" data-url="&catid={$v[catid]}&id={$v[id]}" name="titleName" class="title_name ">
+								{$v[title]}
+							</a>
+						</div>
+						<p class="desc">{$v[description]}</p>
+						
+					</div>
+					<div class="clear"></div>
+				</li>
+				{/loop}
+			</ul>
+		</div>
+	</div>
+	
+	<div class="newRight">
+		<div class="newSider">
+			<h3 class="title">推荐关注</h3>
+			<div class="dingYue">
+				<img alt="" src="{pubimg('wxqrcode.jpg')}">
+				<p>关注 伍元交易 公众号<br></p>
+				<p>及时了解伍元交易动态，更有超值活动等你哦！</p>
+			</div>
+		</div>
+		<div class="newSider">
+			<h3 class="title">天天涨停</h3>
+			<div class="newSList">
+				{pc:content action="lists" catid="33" num="10" order="updatetime DESC" cache="3600"}
+				{loop $data $r}
+					<li>
+						<span class="circle"></span>
+						<a href="{$r[url]}" name="titleName">{$r[title]}</a>
+					</li>
+				{/loop}
+				{/pc}
+			</div>
+		</div>
+		<div class="newSider">
+			<h3 class="title">交易心得</h3>
+			<div class="newSList">
+				{pc:content action="lists" catid="11" num="10" order="inputtime DESC" cache="3600"}
+				{loop $data $r}
+					<li>
+						<span class="circle"></span>
+						<a href="{$r[url]}" name="titleName">{$r[title]}</a>
+					</li>
+				{/loop}
+				{/pc}
+			</div>
+		</div>
+		<div class="newSider">
+			<h3 class="title">交易心得</h3>
+			<div class="newSList">
+				{pc:content action="lists" catid="11" num="10" order="inputtime DESC" cache="3600"}
+				{loop $data $r}
+					<li>
+						<span class="circle"></span>
+						<a href="{$r[url]}" name="titleName">{$r[title]}</a>
+					</li>
+				{/loop}
+				{/pc}
+			</div>
+		</div>
+		<div class="newSider">
+			<h3 class="title">市场分析</h3>
+			<div class="newSList">
+				{pc:content action="lists" catid="9" num="10" order="inputtime DESC" cache="3600"}
+				{loop $data $r}
+					<li>
+						<span class="circle"></span>
+						<a href="{$r[url]}" name="titleName">{$r[title]}</a>
+					</li>
+				{/loop}
+				{/pc}
+			</div>
+		</div>
+		<div class="newSider">
+			<h3 class="title">市场活动</h3>
+			<div class="newSList">
+				{pc:content action="lists" catid="10" num="10" order="inputtime DESC" cache="3600"}
+				{loop $data $r}
+					<li>
+						<span class="circle"></span>
+						<a href="{$r[url]}" name="titleName">{$r[title]}</a>
+					</li>
+				{/loop}
+				{/pc}
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="show_page">
+	<div class="head">
+		<h2></h2>
+		<p><span class="date"></span></p>
+	</div>
+	<div class="cont"></div>
+</div>
+<div id="loading-box-1">
+	<div id="loading-1">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+	</div>
+	<div class="bg"></div>
+</div>
+<div id="tipmusic"></div>
+<script>
+	var info = {
+		catid : {$catid}
+	}
+	
+	function getDate(tm,type){ 
+		var date = new Date(tm);
+		Y = date.getFullYear() + '-';
+		M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+		D = date.getDate() + ' ';
+		h = date.getHours() + ':';
+		m = date.getMinutes();
+		if(type == 'd'){
+			return Y+M+D;
+			console.log('d');
+		}else if(type == 'i'){
+			console.log(tm);
+			return h+m;
+		}else{
+			return Y+M+D+h+m;
+			console.log('date');
+		}
+	}
+	function gettady(tm,type){
+		return getDate(Date.parse(new Date()),'d') == getDate(tm,'d') ? '今天 ' + getDate(tm, 'i') : getDate(tm);
+	}
+	
+	function show_page(title, date, content, relation){
+		$('.show_page h2').html(title);
+		$('.show_page .date').html(date);
+		$('.show_page .cont').html(content);
+		if($('.show_page .relation').length > 0)
+			$('.show_page .relation').remove();
+		if(relation){
+			var rels = '';
+			$.each(relation,function(i,v){
+				nobr = i == 0 ? ' class="noborder"' : '';
+				rels += '<a href="'+ v.url + nobr +'" target="_blank">'+ v.title +'</a>';
+			});
+			if($('.show_page .relation').length > 0)
+				$('.show_page .relation').remove();
+			$('.show_page .cont').after('<div class="relation"><span>相关信息：</span>'+ rels +'<div class="clear"></div></div>');
+		}
+		var h = $('.show_page').height();
+		var top = -h/2;
+		$('.show_page').css({'margin-top':top});
+		$('.show_page').show();
+	}
+	
+	function show_loader(){
+		$('#loading-box-1 #loading-1').show();
+		$('#loading-box-1').show();
+	}
+	
+	function hide_loader(){
+		$('#loading-box-1').hide();
+	}
+	
+	function hideloaderanimate(){
+		$('#loading-box-1 #loading-1').hide();
+	}
+	
+	$('#loading-box-1').click(function(){
+		$('.show_page').hide();
+		hide_loader();
+	});
+	
+	$('.kxlist ul').on('click', 'li a', function(){
+		show_loader();
+		var url = '/index.php?m=kuaixun&c=index&a=kx_page_ajax' + $(this).attr('data-url');
+		$.ajax({
+			'url' : url,
+			'success' : function(data){
+				var relation = typeof data.relation == 'undefined' ? false : data.relation;
+				var gpindex = typeof data.gpindex == 'undefined' ? false : data.gpindex;
+				show_page(data.title, data.inputtime, data.content, relation);
+			}
+		});
+		
+		return false;
+	});
+</script>
+
+{template "content","footer"}

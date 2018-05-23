@@ -1,0 +1,100 @@
+#hyreport .headbox {
+	width: 990px;
+	margin: 0 auto;
+}
+
+#hyreport .headbox  .warp {
+	background: #fff;
+	margin: 10px 0;
+	border: 1px solid #e6e6e6;
+}
+
+#hyreport .headbox  .warp .item {
+	padding: 0 20px;
+}
+
+#hyreport .headbox  .warp .newCrumbs {
+	border-top: 1px solid #e6e6e6;
+	border-bottom: 1px solid #e6e6e6;
+	height: 49px;
+	line-height: 49px;
+	background: #F7F7F7;
+}
+#hyreport .headbox  .newListhead {
+	height: 60px;
+	line-height: 60px;
+
+}
+#hyreport .headbox  .warp .cateson {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#hyreport .headbox  .warp .cateson ul li {
+	float: left;
+	margin-right: 10px;
+	width: 79px;
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #f1f1f1;
+	margin: 0;
+}
+#hyreport .headbox  .warp .cateson ul li a {
+	color: #737373;
+	font-size: 14px;
+}
+#hyreport .headbox  .warp .cateson ul li:hover, #hyreport .headbox  .warp .cateson ul li.active {
+	border-bottom: 2px solid #0fa4e1;
+	height:39px;
+}
+#hyreport .list {
+	background: #fff;
+	width: 990px;
+	border: 1px solid #e6e6e6;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+
+#hyreport .list table {
+	width: 100%;
+}
+
+#hyreport .list table th {
+	background: #0FA4E1;
+	height: 40px;
+	color: #fff;
+	font-size: 14px;
+}
+
+#hyreport .list table .td {
+	text-align:center;
+	font-size: 14px;
+	height: 30px;
+}
+
+#hyreport .list table .td.title {
+	text-align: left;
+	padding: 0 10px;
+}
+
+#hyreport .list table .td.title a {
+	color: #0273AB;
+}
+
+#hyreport .list .pages {
+	background: #0FA4E1;
+	text-align:center;
+	color: #fff;
+}
+
+#hyreport .list .pages a {
+	color: #fff;
+}
+
+#hyreport .list .pages a:hover {
+	text-decoration: underline;
+}
+
+#hyreport .list .pages span {
+	text-decoration: underline;
+}

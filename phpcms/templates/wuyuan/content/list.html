@@ -1,0 +1,133 @@
+{template "content","header"}
+{css('news.css')}
+<div class="newWarp">
+	<div class="newLeft">
+		<div class="newListhead">
+			<h2>{$catname}</h2>
+		</div>
+		<div class="newCrumbs">
+			<a href="{siteurl($siteid)}">首页</a><span> > </span>{catpos($catid)} <span>{$title}</span>
+		</div>
+		{if $parentid != 0}
+		<div class="cateson">
+			<?php 
+				$pararr = explode(',',$CATEGORYS[$catid]['arrparentid']);
+			?>
+			
+			<ul>
+				{pc:content action="category" catid="$pararr[1]"}
+				<li {if $pararr[1] == $catid}class="on"{/if}>
+					<a href="{$CATEGORYS[$pararr[1]][url]}">全部</a>
+				</li>
+				{loop $data $v}
+					<?php 
+						$paron = isset($pararr[2]) && $pararr[2] == $v['catid']; 
+					?>
+					<li {if $paron || $catid == $v[catid]}class="on"{/if}>
+						<a href="{$v[url]}">{$v[catname]}</a>
+					</li>
+				{/loop}
+				{/pc}
+				<div class="clear"></div>
+			</ul>
+			{if isset($pararr[2])}
+			<ul>
+				{pc:content action="category" catid="$pararr[2]"}
+					<li>
+						<a href="{$CATEGORYS[$pararr[2]][url]}">全部</a>
+					</li>
+				{loop $data $v}
+					<li {if $catid == $v[catid]}class="on"{/if}>
+						<a href="{$v[url]}">{$v[catname]}</a>
+					</li>
+				{/loop}
+				{/pc}
+				<div class="clear"></div>
+			</ul>
+			{/if}
+		</div>
+		{/if}
+		<div class="newList">
+			<ul>
+				{pc:content action="lists" catid="$catid" num="10" page="$page" order="updatetime desc"}
+				{loop $data $v}
+				<li class="theme_list clearfix" u-id="132997610" t-id="9191591">
+					<div class="theme_list_img">
+						<img class="user_head" src="{thumb($v[thumb])}">
+					</div>
+					<div class="theme_list_con">
+						<div class="title">
+							<a href="{$v[url]}" name="titleName" class="title_name ">
+								{$v[title]}
+							</a>
+						</div>						<p class="desc">{$v[description]}</p>
+						<div class="auth_msg clearfix">
+							<span class="time txt">{date('Y-m-d',$v[updatetime])}</span>
+							<span class="name">&nbsp;&nbsp;来源:&nbsp;&nbsp;</span>
+							<span class="name"><a href="javascript:;"><?php echo $v['copyfrom'] ? $v['copyfrom'] : '伍元交易'; ?></a></span>
+						</div>
+						<div class="relgp">
+							{relgplist($v[relevantgp])}
+							<div class="clear"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</li>
+				{/loop}
+				{/pc}				{if $pages}<div class="pages">{$pages}</div>{/if}
+			</ul>
+		</div>
+	</div>
+	
+	<div class="newRight">
+		<div class="newSider">
+			<h3 class="title">推荐关注</h3>
+			<div class="dingYue">
+				<img alt="" src="{pubimg('wxqrcode.jpg')}">
+				<p>关注 伍元交易 公众号<br></p>
+				<p>及时了解伍元交易动态，更有超值活动等你哦！</p>
+			</div>
+		</div>
+		<div class="newSider">
+			<h3 class="title">交易心得</h3>
+			<div class="newSList">
+				{pc:content action="lists" catid="11" num="10" order="updatetime DESC" cache="3600"}
+				{loop $data $r}
+					<li>
+						<span class="circle"></span>
+						<a href="{$r[url]}" name="titleName">{$r[title]}</a>
+					</li>
+				{/loop}
+				{/pc}
+			</div>
+		</div>
+		<div class="newSider">
+			<h3 class="title">市场分析</h3>
+			<div class="newSList">
+				{pc:content action="lists" catid="9" num="10" order="updatetime DESC" cache="3600"}
+				{loop $data $r}
+					<li>
+						<span class="circle"></span>
+						<a href="{$r[url]}" name="titleName">{$r[title]}</a>
+					</li>
+				{/loop}
+				{/pc}
+			</div>
+		</div>
+		<div class="newSider">
+			<h3 class="title">市场活动</h3>
+			<div class="newSList">
+				{pc:content action="lists" catid="10" num="10" order="updatetime DESC" cache="3600"}
+				{loop $data $r}
+					<li>
+						<span class="circle"></span>
+						<a href="{$r[url]}" name="titleName">{$r[title]}</a>
+					</li>
+				{/loop}
+				{/pc}
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+{template "content","footer"}

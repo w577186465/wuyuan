@@ -1,0 +1,96 @@
+{template "content","header"}
+
+{css('news.css')}
+
+<div class="newWarp downWrap">
+
+	<div class="item">
+		<img src="/public/img/khd/pc1-300x204.jpg" />
+		<h3>科创PC 版</h3>
+		<p>由微软公司代为开发，稳定美观，交易界面友好人性化，综合市场的及时新闻和市场交易者的多空比例做了实时提示。</p>
+		<div class="download"><a href="kcpc.rar" target="_blank">下载</a></div>
+	</div>
+	
+	<div class="item ios">
+		<img src="/public/img/khd/ios1-200x300.jpg" />
+		<h3>苹果手机版</h3>
+		<p>
+			苹果设备交易软件，方便苹果用户快捷交易。
+			<span class="erweima"><img src="/public/img/khd/ioskhd_ewm.png" /></span>
+		</p>
+		<div class="download two">
+			<a href="https://itunes.apple.com/us/app/kuai-le-er-yuan-qi-quan-jiao-yi/id1038361740?mt=8" target="_blank">下载</a>
+			<a href="javascript:;" class="ewm">二维码</a>
+		<div class="clear"></div>
+		</div>
+		
+	</div>
+	
+	<div class="item android">
+		<img src="/public/img/khd/android1-169x300.jpg" />
+		<h3>安卓手机版</h3>
+		<p>
+			极速交易方便安卓用户的使用。
+			<span class="erweima"><img src="/public/img/khd/androidkhd_ewm.png" /></span>
+		</p>
+		<div class="download two">
+			<a href="http://www.hpoption.com/hpoption.apk" target="_blank">下载</a>
+			<a href="javascript:;" class="ewm">二维码</a>
+			<div class="clear"></div>
+		</div>
+		
+	</div>
+	
+	<div class="item">
+		<img src="/public/img/khd/wapkehuduan.jpg" />
+		<h3>手机网页版</h3>
+		<p>手机访问官网，可以实现直接下载APP，手机网页交易，手机网站注册学习和标准网站的使用并交易注册。</p>
+		<div class="download"><a href="http://w.hpoption.com/">手机访问</a></div>
+	</div>
+	
+	<div class="item">
+		<img src="/public/img/khd/kanpan1.jpg" />
+		<h3>看盘软件客户端</h3>
+		<p>看盘软件是最新的招商银行专用外汇分析软件，可以满足绝大多数客户的看盘分析之用。简单实用，是快乐二元期权为客户准备的专用软件。</p>
+		<div class="download"><a href="https://pan.baidu.com/s/1eRZSiKa" target="_blank">下载</a></div>
+	</div>
+	
+	<div class="item">
+		<img src="/public/img/khd/kanpan2.jpg" />
+		<h3>MT4看盘软件</h3>
+		<p>正版MT4看盘软件来自迈达克官方一手软件，及时的数据传输能力仅次于路透社。是一款不错的看盘分析软件。 </p>
+		<div class="download"><a href="https://pan.baidu.com/s/1pLIprGB" target="_blank">下载</a></div>
+	</div>
+	
+	<div class="clear"></div>
+<script type="text/javascript">
+	$('.ios .ewm').hover(function(){
+		$('.ios .erweima').css({'display':'block'});
+	},function(){
+		$('.ios .erweima').css({'display':'none'});
+	});
+	$('.android .ewm').hover(function(){
+		$('.android .erweima').css({'display':'block'});
+	},function(){
+		$('.android .erweima').css({'display':'none'});
+	});
+</script>
+<style>
+	.downWrap {border-left:1px solid #e7e7e7; border-top:1px solid #e7e7e7; margin-bottom:20px; background:#fff;}
+	.downWrap .item {width:33.2%; float:left; border-right:1px solid #e7e7e7; border-bottom:1px solid #e7e7e7;}
+	.downWrap .item img {width:100%; height:175px;}
+	.downWrap .item h3 {text-align:center; font:18px "Microsoft YaHei"; color:#333; margin:15px 0; font-weight:bold;}
+	.downWrap .item p {color:#666; line-height:27px; font-size:14px; font-family:Microsoft YaHei; padding:0 10px; height:81px; position:relative;}
+	.downWrap .item p .erweima {position:absolute; width:100%; height:100%; background:#fff; top:0; left:0; display:none;}
+	.downWrap .item .erweima { float:left; display:block; width:30px; height:30px; margin:0 auto;}
+	.downWrap .item .erweima img {height:100%; width:81px; display:block; margin:0 auto;}
+	.downWrap .item .download {margin-bottom:20px;}
+	.downWrap .item .download a {display:block; width:120px; height:30px; line-height:30px; border-radius:15px; background:#12B7F5; margin:0 auto; text-align:center; color:#fff;}
+	.downWrap .item .download.two a {float:left; margin-left:30px}
+</style>
+
+</div>
+
+
+
+{template "content","footer"}

@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+<meta name="keywords" content="{$SEO['keyword']}">
+<meta name="description" content="{$SEO['description']}">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="/public/css/reset.css">
+<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_381623_fpuq97581l9pb9.css">
+<link rel="stylesheet" type="text/css" href="/public/css/kxcommon.css">
+
+{js('jquery.min.js')}
+</head>
+<body>
+<div id="top">
+  <div class="top_warp">
+    <div class="logo">
+      <a href="/"><img alt="伍元交易logo" src="{pubimg('logo-white.png')}" width="110px"></a>
+    </div>
+	<a class="kaihu" href="/index.php?m=content&c=index&a=lists&catid=43" target="_blank">期货开户</a>
+    <div class="kf">
+      <a href="javascript:openZoosUrl('chatwin');"><i class="iconfont icon-kefu"></i>在线客服</a>
+    </div>
+  </div>
+</div>
+
+<div class="leftwarp">
+  <ul class="menu">
+      <li><a href="/" {if $catid==0}class="active"{/if}><span>首页</span></a></li>
+      {pc:content action="category" catid="0" num="10"}
+      {loop $data $v}
+        <?php $url = $v['catid'] == 28 ? 'javascript:;' : $v['url']; ?>       
+        <li>
+          <a{if $catid==$v[catid]} class="active"{/if} href="{$url}"><span>{$v[catname]}</span></a>
+          {pc:content action="category" catid="$v[catid]" num="15" siteid="$siteid" order="listorder ASC" return="data2"}
+          {if count($data2)}
+            <ul>
+            {loop $data2 $r}
+              <li><a href="{$r[url]}">{$r[catname]}</a></li>
+            {/loop}
+            </ul>
+          {/if}
+          {/pc}
+        </li>
+      {/loop}
+      {/pc}
+  </ul>
+</div>

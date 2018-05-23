@@ -1,0 +1,14 @@
+﻿@charset "utf-8";
+/*右侧导航*/
+.right_top { position: fixed; z-index: 999; right: 4px; bottom: 200px; }
+.right_top ul li { width: 52px; height: 52px; margin-bottom: 3px; cursor: pointer; background: url(../images/right_nav2.png) no-repeat; overflow: hidden; }
+.right_top ul li.yjfk { background-position: 0 0; }
+.yjfk h2, .aqq h2, .help h2 , .collect h2{ padding-top:5px;background: #be2632; text-indent: 0; display: none; height: 52px; width: 52px; text-align: center; line-height: 20px; color: #fff; }
+.yjfk:hover h2, .aqq:hover h2, .help:hover h2 , .collect:hover h2{ display: block; }
+.right_top ul li.help { background-position: 0 -55px; }
+.right_top ul li.aqq { background-position: 0 -110px; }
+.fhdb { display: none; position: fixed; right: 4px; bottom: 148px; width: 52px; height: 52px; background: url(../images/right_nav1.png) no-repeat; background-position: 0 -165px; cursor: pointer; }
+.ww, .zx { width: 100px; height: 100px; background-color: #f00; position: absolute; left: -110px; top: 0; display: none; }
+.zx { top: 110px; }
+.zx img{width: 100px; height: 100px; }
+.right_top ul li.collect{background-position: 0 -165px;}

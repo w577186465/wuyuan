@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+<meta name="keywords" content="{$SEO['keyword']}">
+<meta name="description" content="{$SEO['description']}">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+{css('common.css,1_banner.css')}
+{js('jquery.min.js')}
+</head>
+<body>
+<div class="new_bannerContentBg" id="new_bannerContentBg">
+  <div class="new_bannerContent">
+    <div class="nav1 clear" id="nav1" style="background:none;width: 1180px;">
+      <div class="nav1-sub clear" style="width: 1180px;">
+        <div class="nav-quick" style="padding-top: 15px;">
+          <div class="rightArea" style="padding-right:0px;">
+            
+			<a href="javascript:;" class="phonetrade">手机交易<em><img src="/public/img/wqrcode.jpg" alt="手机交易二维码" /></em></a>
+            <a class="loadMessage" href="/login.html">登录</a>
+            <a class="signUpMessage" href="/register.html" style="margin-left:15px;">开户</a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="indexHead">
+      <div class="logo">
+        <a href="/">
+            
+                <img alt="伍元交易logo" src="{pubimg('logo-white.png')}" width="213" height="50">
+            
+        </a>
+      </div>
+      <div class="lgChange">
+        <div style="position:relative;bottom:6px;">
+        </div>
+      </div>
+      <div class="accountinfo" style="padding-top: 18px;">
+        <ul class="menu1">
+            <li><a href="/"><span>首页</span></a></li>
+			{pc:content action="category" catid="0" num="10"}
+			{loop $data $v}
+				<?php $url = $v['catid'] == 28 ? 'javascript:;' : $v['url']; ?>				
+				<li>
+					<a href="{$url}"><span>{$v[catname]}</span></a>
+					{pc:content action="category" catid="$v[catid]" num="15" siteid="$siteid" order="listorder ASC" return="data2"}
+					{if count($data2)}
+						<ul>
+						{loop $data2 $r}
+							<li{if $n==1} style="border:0;"{/if}><a href="{$r[url]}">{$r[catname]}</a></li>
+						{/loop}
+						</ul>
+					{/if}
+					{/pc}
+				</li>
+			{/loop}
+			{/pc}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,161 @@
+<?php
+	pc_base::load_sys_class('form', '', 0);
+?>
+
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+<meta name="keywords" content="{$SEO['keyword']}">
+<meta name="description" content="时光期货学院是集期货交易，期货开户，期货培训，期货咨询为一体的期货服务中介机构">
+
+{css('common.css,index.css,1_banner.css,2_coincommon_v2.css,3_jquery-ui.css')}
+{js('jquery.min.js,power-slider.min.js')}
+</head>
+<body>
+<div class="topnav1">
+	<div class="cWarp">
+	<ul>
+		<li class="phonetrade"><a href="javascript:;">手机交易</a><em><img src="/public/img/wqrcode.jpg" /></em></li>
+		<li><a href="/login.html">登录</a></li>
+		<li><a href="/register.html" style="border:0;">注册</a></li>
+	</ul>
+	<div class="clear"></div>
+	</div>
+</div>
+<div class="bannerTopCh">
+	<div class="indexHead">
+		<div class="logo">
+			<a href="{siteurl($siteid)}" style="text-decoration: none;">
+				<img alt="五元交易LOGO" src="{pubimg('logo-blue.png')}" width="213" height="50" />
+			</a>
+			
+		</div>
+		
+		<div class="accountinfo" style="padding-top: 18px;">
+			<ul class="menu1">
+				<li class="cur"><a href="{siteurl($siteid)}"><span class="">首页</span></a></li>
+				{pc:content action="category" catid="0" num="10" order="listorder ASC"}
+				{loop $data $v}
+					<?php 
+						$url = $v['url'] != siteurl($siteid) . '#' ? $v['url'] : 'javascript:;';
+					?>
+					<li><a href="{$url}" {if $v[catid]==16}class="trading"{/if}><span>{$v[catname]}</span></a>
+					{pc:content action="category" catid="$v[catid]" num="15" siteid="$siteid" order="listorder ASC" return="data2"}
+					{if count($data2)}
+						<ul>
+						{loop $data2 $r}
+							<li{if $n==1} style="border:0;"{/if}><a href="{$r[url]}">{$r[catname]}</a></li>
+						{/loop}
+						</ul>
+					{/if}
+					{/pc}
+					</li>
+				{/loop}
+				{/pc}
+			</ul>
+		</div>
+		<script>
+			function ismobile() {
+				var sUserAgent= navigator.userAgent.toLowerCase(); 
+				var bIsIpad= sUserAgent.match(/ipad/i) == "ipad"; 
+				var bIsIphoneOs= sUserAgent.match(/iphone os/i) == "iphone os"; 
+				var bIsMidp= sUserAgent.match(/midp/i) == "midp"; 
+				var bIsUc7= sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4"; 
+				var bIsUc= sUserAgent.match(/ucweb/i) == "ucweb"; 
+				var bIsAndroid= sUserAgent.match(/android/i) == "android"; 
+				var bIsCE= sUserAgent.match(/windows ce/i) == "windows ce"; 
+				var bIsWM= sUserAgent.match(/windows mobile/i) == "windows mobile";
+				
+				if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+					return true;
+				}
+			}
+			if(ismobile())
+			/*$('.menu1 .trading').click(function(){
+				if (ismobile()) {
+					window.location.href = 'http://www.kleyqq.com/m/trading.html';
+					return false;
+				}
+			});*/
+			if (ismobile()) {
+				$('body').append('<div class="gophone"><a href="http://www.kleyqq.com/m/">进入手机版</a></div>');
+			}
+		</script>
+	</div>
+</div>
+
+<!--layui 模块-->
+<link rel="stylesheet" type="text/css" href="/public/setfutures/css/layui.css" />
+<!-- 头部 end-->
+<link href="/public/setfutures/css/kaihuxiangqin.css"  rel="stylesheet" type="text/css"/>
+<body>
+<div class="box">
+  <div class="box1">
+    <div style="width: 1200px;margin: 0 auto; height: 396px;position: relative;">
+      <div id="ewm">
+      <img src="/public/setfutures/images/ewm.png" width="150" height="150">
+      </div>
+      <div id="kh_tc">
+        <h1 class="kh_wy col">开户预约</h1>
+        <p class="kh_tj">提交信息&nbsp;&nbsp;&nbsp;专人电话服务指导</p>
+          <form id="addOpenAccount"  action="/index.php?m=openaccount&c=index&a=submit" method="post">
+                <ul class="clearfix">
+                <li><input id="username" class="inp zwz" type="text" name="username" placeholder="请输入您的开户姓名" value="" maxlength="50"></li>
+                <li><input id="phone" class="inp zwz" type="text" name="phone" placeholder="请输入您的手机号码" value="" maxlength="50"></li>
+                <li><input id="code" type="text"  class=" yzm inp left" name="code" placeholder="请输入验证码" value="" nullmsg="请输入验证码"><span class="dl_yz left"><img id="codeimg" style="cursor:pointer;width:94px; height:33px;margin-left: 5px;border: 1px solid #D6D6D6;" src="/api.php?op=checkcode&code_len=4&font_size=14&width=100&height=30&font_color=&background=" onclick="this.src=this.src+'&i='+Math.random()"></span></li>
+                </ul>
+                <button class="kh_button" onclick="">提交</button>
+                <button class="zzkh_button" onclick="window.location.href='http://www.kleyqq.com/fenxi/qihuo/28399.html'">自助开户</button>
+          </form>
+      </div>
+    </div>
+  </div>
+  <div class="box2"></div>
+  <div class="box3"></div>
+  <div class="box4"></div>
+  <div class="box5"></div>
+  <div class="box6"></div>
+  <div class="box7"></div>
+  <div class="box8"></div>
+  <div class="box9"></div>
+  <div class="box10"></div>
+  <div class="box11">
+    <ul class="list clearfix">
+      <li class="list1"></li>
+      <li class="list2"></li>
+      <li class="list3"></li>
+      <li class="list4"></li>
+      <li class="list5"></li>
+      <li class="list6" style="margin-right:0;"></li>
+    </ul>
+    <ul class="list clearfix">
+      <li class="list7"></li>
+      <li class="list8"></li>
+    </ul>
+  </div>
+</div>
+
+<script>
+	$("#addOpenAccount").submit(function(){
+		var url = $("#addOpenAccount").attr("action");
+		var data = {};
+		data.username = $("#username").val();
+		data.tel = $("#phone").val();
+		data.code = $("#code").val();
+		$.post(url, data, function(data) {
+			if(data.status == 1){
+				alert(data.msg);
+			} else {
+				$("#code").val("");
+				alert(data.msg);
+			}
+			var codeimg = $("#codeimg").attr("src")+'&i='+Math.random();
+			$("#codeimg").attr("src", codeimg);
+		});
+		return false;
+	});
+</script>
+	
+{template "content", "footer"}

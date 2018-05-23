@@ -1,0 +1,84 @@
+{template "content","header"}
+{css('news.css')}
+<div class="newWarp">
+	<div class="newLeft">
+		<div class="newSCrumbs">
+			<a href="{siteurl($siteid)}">首页</a><span> > </span>{catpos($catid)} <span>{$title}</span>
+		</div>
+
+		<div class="newContent relative">
+			<div class="prodesc_tab">
+				{pc:content action="lists" catid="13" num="8"}
+					{loop $data $v}
+						<p><a href="{$v[url]}" {if $v[id]==$id}class="curr"{/if}>{$v[title]}</a></p>
+					{/loop}
+				{/pc}
+			</div>
+			<h1>{$title}</h1>
+			<div class="info">
+				<span class="user_msg_mobile"></span>
+				<span>来源</span>
+				<a href="javascript:;" class="name">{if $show[copyfrom]}{$show[copyfrom]}{else}伍元交易{/if}</a>
+				<span class="time">
+					{$updatetime}
+				</span>
+			</div>
+			
+			<div class="newArticle">
+				{$content}
+			</div>
+		</div>
+	</div>
+	
+	<div class="newRight">
+		<div class="newSider">
+			<h3 class="title">推荐关注</h3>
+			<div class="dingYue">
+				<img alt="" src="{pubimg('wxqrcode.jpg')}">
+				<p>关注 伍元交易 公众号<br></p>
+				<p>及时了解伍元交易动态，更有超值活动等你哦！</p>
+			</div>
+		</div>
+		<div class="newSider">
+			<h3 class="title">交易心得</h3>
+			<div class="newSList">
+				{pc:content action="lists" catid="11" num="10" order="updatetime DESC" cache="3600"}
+				{loop $data $r}
+					<li>
+						<span class="circle"></span>
+						<a href="{$r[url]}" name="titleName">{$r[title]}</a>
+					</li>
+				{/loop}
+				{/pc}
+			</div>
+		</div>
+		<div class="newSider">
+			<h3 class="title">市场分析</h3>
+			<div class="newSList">
+				{pc:content action="lists" catid="9" num="10" order="updatetime DESC" cache="3600"}
+				{loop $data $r}
+					<li>
+						<span class="circle"></span>
+						<a href="{$r[url]}" name="titleName">{$r[title]}</a>
+					</li>
+				{/loop}
+				{/pc}
+			</div>
+		</div>
+		<div class="newSider">
+			<h3 class="title">市场活动</h3>
+			<div class="newSList">
+				{pc:content action="lists" catid="10" num="10" order="updatetime DESC" cache="3600"}
+				{loop $data $r}
+					<li>
+						<span class="circle"></span>
+						<a href="{$r[url]}" name="titleName">{$r[title]}</a>
+					</li>
+				{/loop}
+				{/pc}
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+{template "content","footer"}

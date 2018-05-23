@@ -1,0 +1,51 @@
+<?php
+	$industry = getindustry();
+?>
+
+{template "content","header"}
+{css('hyreport.css')}
+<div id="hyreport" class="newWarp">
+	<div class="headbox">
+		<div class="warp">
+			<div class="newListhead item">
+				<h2>{$catname}</h2>
+			</div>
+			<div class="newCrumbs item">
+				<a href="{siteurl($siteid)}">首页</a><span> > </span>{catpos($catid)} <span>{$title}</span>
+			</div>
+			{if $parentid != 0}
+			<div class="cateson item">
+
+			</div>
+			{/if}
+		</div>
+	</div>
+		<div class="list">
+			<table>
+				<tbody>
+					{pc:content action="lists" catid="$catid" num="50" page="$page" order="updatetime desc"}
+					<tr>
+						<th>报告日期</th>
+						<th>股票代码</th>
+						<th>研报</th>
+						<th>评级变动</th>
+						<th>机构名称</th>
+						<th>作者</th>
+					</tr>
+					{loop $data $v}
+					<tr>
+						<td class="td date">{date("Y-m-d", $v[inputtime])}</td>
+						<td class="td code">{$v[code]}</td>
+						<td class="td title"><a href="{$v[url]}">{$v[title]}</a></td>
+						<td class="td change">{php echo $v[change]=="" ? "无" : $v[change]}</td>
+						<td class="td insname">{$v[insname]}</td>
+						<td class="td author">{$v[author]}</td>
+					</tr>
+					{/loop}
+					{/pc}
+				</tbody>
+			</table>
+			{if $pages}<div class="pages">{$pages}</div>{/if}
+		</div>
+</div>
+{template "content","footer"}

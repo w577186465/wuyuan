@@ -1,0 +1,205 @@
+{template "content","header"}
+{css('news.css,gpkx.css')}
+<div class="sharesPage">
+	
+	<div class="news">
+		<div class="reltab">
+			<ul>
+				<li><a href="/index.php?m=content&c=shares&a=page&id={$id}&type=news">最新消息</a></span></li>
+				<li><a href="/index.php?m=content&c=shares&a=page&id={$id}&type=analysed">分析文章</span></a></li>
+				<div class="clear"></div>
+			</ul>
+		</div>
+		<ul class="listcont">
+			{loop $plist $v}
+			<li>
+				<div class="time">
+					<p>{showtime($v['inputtime'])}</p>
+				</div>
+				<div class="theme_list_con">
+					<div class="title">
+						<a href="{$v[url]}" class="view" data-url="&catid={$v[catid]}&id={$v[id]}" name="titleName" class="title_name ">
+							{$v[title]}
+						</a>
+					</div>
+					<p class="desc">{$v[description]}</p>
+				</div>
+				<div class="clear"></div>
+			</li>
+			{/loop}
+		</ul>
+	</div>
+	<div class="cenWarp">
+		<div class="info">
+			<div class="jbinfo">
+				<div class="name">
+					<h2>{$gpdata[name]}<span>{$gpdata[code]}</span></h2>
+				</div>
+				<div class="zhangting">
+					<div class="price"></div>
+					<div class="change">
+						<div id="change" class="up">0.01</div>
+						<div id="changeP" class="up">+0.06%</div>
+					</div>
+				</div>
+			</div>
+			<div class="other">
+				<table>
+					<tbody>
+						<tr>
+							<th>今&nbsp;&nbsp;开：</th>
+							<td class="down">16.21</td>
+							<th>成交量：</th>
+							<td></td>
+							<th>振&nbsp;&nbsp;幅：</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th>最&nbsp;&nbsp;高：</th>
+							<td class="up">16.43</td>
+							<th>成交额：</th>
+							<td></td>
+							<th>换手率：</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th>最&nbsp;&nbsp;低：</th>
+							<td class="down"></td>
+							<th>总市值：</th>
+							<td></td>
+							<th>市净率：</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th>昨&nbsp;&nbsp;收：</th>
+							<td></td>
+							<th>流通市值：</th>
+							<td></td>
+							<th>市盈率：</th>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="gptable">
+			<div class="head">
+				<div class="tab">
+					<span data-url="{get_gpimage($gpdata[code],'min','big')}">分时模式</span>
+					<span data-url="{get_gpimage($gpdata[code],'daily','big')}">日线模式</span>
+					<span data-url="{get_gpimage($gpdata[code],'weekly','big')}">周线模式</span>
+					<span data-url="{get_gpimage($gpdata[code],'monthly','big')}">月线模式</span>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<div id="showWarp">
+				
+			</div>
+			
+		</div>
+	</div>
+	<div class="gpp_right">
+			<div class="baojia">
+				<h2>行情报价</h2>
+				<div class="cont">
+					<table id="pa1" class="line22 w100p text-indent10" cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr><td>卖五</td><td id="gts5a" class="red"></td><td id="gts5b"></td><td id="gts5c" class=""></td></tr>
+							<tr><td>卖四</td><td id="gts4a" class="red"></td><td id="gts4b"></td><td id="gts4c"></td></tr>
+							<tr><td>卖三</td><td id="gts3a" class="red"></td><td id="gts3b"></td><td id="gts3c" class=""></td></tr>
+							<tr><td>卖二</td><td id="gts2a" class="red"></td><td id="gts2b"></td><td id="gts2c" class=""></td></tr>
+							<tr><td>卖一</td><td id="gts1a" class="red"></td><td id="gts1b"></td><td id="gts1c" class=""></td></tr>
+							<tr><td>买一</td><td id="gtb1a" class="red"></td><td id="gtb1b"></td><td id="gtb1c" class=""></td></tr>
+							<tr><td>买二</td><td id="gtb2a" class="red"></td><td id="gtb2b"></td><td id="gtb2c" class=""></td></tr>
+							<tr><td>买三</td><td id="gtb3a" class="red"></td><td id="gtb3b"></td><td id="gtb3c" class=""></td></tr>
+							<tr><td>买四</td><td id="gtb4a" class="red"></td><td id="gtb4b"></td><td id="gtb4c" class=""></td></tr>
+							<tr><td>买五</td><td id="gtb5a" class="red"></td><td id="gtb5b"></td><td id="gtb5c" class=""></td></tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	<div class="clear"></div>
+</div>
+
+<script type="text/javascript" src="http://hq.sinajs.cn/list={get_gpcity($gpdata[code])}{$gpdata[code]}" charset="gb2312"></script>
+<script>
+	var gpinfo = {
+		code : '{$gpdata[code]}',
+		city : '{get_gpcity($gpdata[code])}',
+		citycode : '{get_gpcity($gpdata[code],"code")}',
+		ltgb : {$ltgb}
+	}
+	!function(){
+		$('.tab span').click(function(){
+			gptable_tab($(this));
+			
+		});
+		function gptable_tab(_this){
+			var src = _this.attr('data-url');
+			$('.gptable .tab').find('.on').removeClass('on');
+			_this.addClass('on');
+			var html = '<img src="'+ src +'"/>';
+			$(".gptable #showWarp").html(html);
+		}
+		var first = $('.gptable .tab span').eq(0);
+		gptable_tab(first);
+		
+		var otherinfo = hq_str_{get_gpcity($gpdata[code],"code")};
+		otherinfo = otherinfo.split(",");
+		console.log(otherinfo);
+		
+		$('.price').html(otherinfo[3]);
+		$('.other td').eq(0).html(otherinfo[1]);
+		$('.other td').eq(1).html(parseInt(otherinfo[8]/100) + '手');
+		$('.other td').eq(2).html({$get_gpdata['zhenfu']});
+		$('.other td').eq(3).html(otherinfo[4]);
+		var cje = otherinfo[9]/10000;
+		$('.other td').eq(4).html(cje.toFixed(2) + '万');
+		$('.other td').eq(5).html(wan(otherinfo[8]*100/gpinfo.ltgb));
+		$('.other td').eq(6).html(otherinfo[5]);
+		$('.other td').eq(7).html(wan(otherinfo[3]*gpinfo.ltgb));
+		$('.other td').eq(9).html(otherinfo[2]);
+		$('.other td').eq(10).html(wan(gpinfo.ltgb));
+		$('.other td').eq(11).html({$get_gpdata['shiying']});
+		
+		
+		function wan(num){
+			var num = num/10000
+			return num.toFixed(2) + '万';
+		}
+		
+		function savatwo(num){
+			var num = parseFloat(num);
+			return num.toFixed(2);
+		}
+		
+		//报价
+		//卖
+		$('.baojia tr:eq(0) td:eq(1)').html(savatwo(otherinfo[29]));
+		$('.baojia tr:eq(0) td:eq(2)').html(Math.round(otherinfo[28]/100));
+		$('.baojia tr:eq(1) td:eq(1)').html(savatwo(otherinfo[27]));
+		$('.baojia tr:eq(1) td:eq(2)').html(Math.round(otherinfo[26]/100));
+		$('.baojia tr:eq(2) td:eq(1)').html(savatwo(otherinfo[25]));
+		$('.baojia tr:eq(2) td:eq(2)').html(Math.round(otherinfo[24]/100));
+		$('.baojia tr:eq(3) td:eq(1)').html(savatwo(otherinfo[23]));
+		$('.baojia tr:eq(3) td:eq(2)').html(Math.round(otherinfo[22]/100));
+		$('.baojia tr:eq(4) td:eq(1)').html(savatwo(otherinfo[21]));
+		$('.baojia tr:eq(4) td:eq(2)').html(Math.round(otherinfo[20]/100));
+		//买
+		$('.baojia tr:eq(5) td:eq(1)').html(savatwo(otherinfo[11]));
+		$('.baojia tr:eq(5) td:eq(2)').html(Math.round(otherinfo[10]/100));
+		$('.baojia tr:eq(6) td:eq(1)').html(savatwo(otherinfo[13]));
+		$('.baojia tr:eq(6) td:eq(2)').html(Math.round(otherinfo[12]/100));
+		$('.baojia tr:eq(7) td:eq(1)').html(savatwo(otherinfo[15]));
+		$('.baojia tr:eq(7) td:eq(2)').html(Math.round(otherinfo[14]/100));
+		$('.baojia tr:eq(8) td:eq(1)').html(savatwo(otherinfo[17]));
+		$('.baojia tr:eq(8) td:eq(2)').html(Math.round(otherinfo[16]/100));
+		$('.baojia tr:eq(9) td:eq(1)').html(savatwo(otherinfo[19]));
+		$('.baojia tr:eq(9) td:eq(2)').html(Math.round(otherinfo[18]/100));
+
+	}();
+</script>
+<script src="/public/js/jquery.nicescroll.js"></script>
+

@@ -1,0 +1,822 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+<meta name="keywords" content="{$SEO['keyword']}">
+<meta name="description" content="{$SEO['description']}">
+
+{css('common.css,index.css,1_banner.css,2_coincommon_v2.css,3_jquery-ui.css,4_index.css')}
+{js('jquery.min.js,power-slider.min.js')}
+</head>
+<body>
+<div class="topnav1">
+	<div class="cWarp">
+	<ul>
+		<li class="phonetrade"><a href="javascript:;">手机交易</a><em><img src="/public/img/wqrcode.jpg" /></em></li>
+		<li><a href="/login.html">登录</a></li>
+		<li><a href="/register.html" style="border:0;">注册</a></li>
+	</ul>
+	<div class="clear"></div>
+	</div>
+</div>
+<div class="bannerTopCh">
+	<div class="indexHead">
+		<div class="logo">
+			<a href="{siteurl($siteid)}" style="text-decoration: none;">
+				<img alt="五元交易LOGO" src="{pubimg('logo-blue.png')}" width="213" height="50" />
+			</a>
+			
+		</div>
+		
+		<div class="accountinfo" style="padding-top: 18px;">
+			<ul class="menu1">
+				<li class="cur"><a href="{siteurl($siteid)}"><span class="">首页</span></a></li>
+				{pc:content action="category" catid="0" num="10" order="listorder ASC"}
+				{loop $data $v}
+					<?php 
+						$url = $v['url'] != siteurl($siteid) . '#' ? $v['url'] : 'javascript:;';
+					?>
+					<li><a href="{$url}" {if $v[catid]==16}class="trading"{/if}><span>{$v[catname]}</span></a>
+					{pc:content action="category" catid="$v[catid]" num="15" siteid="$siteid" order="listorder ASC" return="data2"}
+					{if count($data2)}
+						<ul>
+						{loop $data2 $r}
+							<li{if $n==1} style="border:0;"{/if}><a href="{$r[url]}">{$r[catname]}</a></li>
+						{/loop}
+						</ul>
+					{/if}
+					{/pc}
+					</li>
+				{/loop}
+				{/pc}
+			</ul>
+		</div>
+		<script>
+			function ismobile() {
+				var sUserAgent= navigator.userAgent.toLowerCase(); 
+				var bIsIpad= sUserAgent.match(/ipad/i) == "ipad"; 
+				var bIsIphoneOs= sUserAgent.match(/iphone os/i) == "iphone os"; 
+				var bIsMidp= sUserAgent.match(/midp/i) == "midp"; 
+				var bIsUc7= sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4"; 
+				var bIsUc= sUserAgent.match(/ucweb/i) == "ucweb"; 
+				var bIsAndroid= sUserAgent.match(/android/i) == "android"; 
+				var bIsCE= sUserAgent.match(/windows ce/i) == "windows ce"; 
+				var bIsWM= sUserAgent.match(/windows mobile/i) == "windows mobile";
+				
+				if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+					return true;
+				}
+			}
+			if(ismobile())
+			/*$('.menu1 .trading').click(function(){
+				if (ismobile()) {
+					window.location.href = 'http://www.kleyqq.com/m/trading.html';
+					return false;
+				}
+			});*/
+			if (ismobile()) {
+				$('body').append('<div class="gophone"><a href="http://www.kleyqq.com/m/">进入手机版</a></div>');
+			}
+		</script>
+	</div>
+</div>
+<div class="indexTopCh clear" style="min-width: 1180px;">
+	
+	<div class="topContent">
+		<div id="bgSwitch">
+		    <div id="indexBgSwitch" class="indexBgCheange">
+				<a class="bg smask" style="background-image: url('/public/img/cfdbanner.jpg')" target="_blank" href="/school/rumen/xuexi/49928.html"></a>
+				<a class="bg smask" style="background-image: url('/public/img/banner_khxq0628.jpg')" target="_blank" href="/index.php?m=content&c=index&a=lists&catid=43"></a>
+				<a class="bg smask" style="background-image: url('/public/img/bann1.jpg')"  href="/pages/shidang"></a>
+				<a class="bg smask" style="background-image: url('/huandang/images/head.jpg')"  href="/huandang"></a>
+				<a class="bg smask" style="background-image: url('{pubimg('banner8.jpg')}')"  href="/wdcceyqq"></a>
+				<a class="bg smask" style="background-image: url('{pubimg('banner7.jpg')}')"  href="/wdcceyqq"></a>
+		    </div>
+		    <div class="checkRoll">
+			    <ul id="bgSwitchNav">
+			      <li class="current"></li>
+			      <li class=""></li>
+			      <li class=""></li>
+			    </ul>
+		    </div>
+		</div>
+		<div class="logineddiv_box">
+		<div class="shou_three logineddiv">
+        	<!--没有登陆框-->
+        	<div class="denglu_one loginformdiv_register">
+                <h1>欢迎来到伍元交易</h1>
+                <a href="/register.html"><input type="button" class="btn_zhuce" value="立即注册"></a>
+                <h2>已有账号？立即 <a href="/login.html" class="a_denglu">登录</a> </h2>
+                <h3>
+                    <a href="{$CATEGORYS[13][url]}">了解伍元产品</a>
+                    <a href="http://www.88eyqq.com/" target="_blank" class="a_rr">交易直播室</a>
+                </h3>
+            </div>
+			<div class="top">
+            	<span>推荐阅读</span>
+            </div>
+			<div class="bottom">
+				{pc:content action="position" posid="1" num="4" order="id desc"}
+				{loop $data $v}
+					<a href="{$v[url]}">• {str_cut($v[title],45)}</a>
+				{/loop}
+				{/pc}
+			</div>
+            
+        </div>
+	</div>
+	
+	</div>
+</div>
+
+<div class="indexInfo homeGG">
+	<div id="gonggao" class="immediateVote">
+		<div class="gg_left">
+			<span class="newsIcon"></span>
+			<span class="">公告:</span>
+		</div>
+		{pc:content action="lists" catid="25"}
+			<ul class="sliderbox">
+			{loop $data $v}
+				<li><a href="{$v[url]}" class="newsContent">{$v[title]}</a></li>
+			{/loop}
+			</ul>
+		{/pc}
+		<a href="{$CATEGORYS[25][url]}" class="ggMore" style="margin-left:10px;">更多...</a>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<script type="javascript:;">
+	//$("#gonggao").powerSlider({delayTime:1000});
+</script>
+
+<div class="shou_four">
+	<div class="cWarp">
+    	<ul class="left img_fan">
+        	<li>
+            	<p class="img img_1"></p>
+                <h3>出金快</h3>
+                <h4>10分钟出金，中国区最快</h4>
+            </li>
+        	<li>
+            	<p class="img img_2"></p>
+                <h3>收益合理</h3>
+                <h4>收益合理</h4>
+            </li>
+            <li>
+            	<p class="img img_3"></p>
+                <h3>服务好</h3>
+                <h4>24小时客服，即问即答</h4>
+            </li>
+        </ul>
+        <div class="right">
+        	<h2>
+            	<span>热门新闻</span>
+                <a href="{$CATEGORYS[14][url]}">更多 &gt;</a>
+            </h2>
+			<div class="indexjinshi">
+				<ul>
+					<iframe height="1000px" width="375px" frameborder="0" scrolling="no" src="http://www.jin10.com/example/jin10.com.html?width=375&height=1000&backgroundColor=fdfdfc&color=333&messageNum=50&backgroundColor=F9F9F9"  ></iframe>
+					{pc:content action="hits" catid="11" num="5" order="views DESC" cache="3600"}
+					{loop $data $v}
+						<li><a href="{$v[url]}">• {$v[title]} </a><i>{$v[updatetime]}</i></li>
+					{/loop}
+					{/pc}
+				</ul>
+			</div>
+        </div>        
+    </div>
+</div>
+<div class="clear"></div>
+
+<div class="indFutMod indFutMod2">
+        <div class="box1">
+            <div class="box1con">
+                <h1 class="title">交易产品</h1>
+                <h2>
+                	<br>
+                    白天晚上都可以交易 <br>
+                    极速开户 T+0结算到账
+                </h2>
+                <ul class="list">
+                    <li><a href="{$CATEGORYS[13][url]}"> 更多产品介绍</a></li>
+                    <li><a href="http://v.hpoption.net/" target="_blank">视频讲解</a></li>
+                </ul>
+            </div>
+        </div>
+        <ul class="shou_five">
+        	<li>
+            	<h2>
+                	<strong>标准期权 <img src="{pubimg('hot.png')}"></strong>
+                    <span>只要判断涨跌</span>
+                </h2>
+                <div class="zhong">
+                	<p><strong>低门槛：</strong><span>15元</span>开始交易</p>
+                    <p><strong>手续费：</strong><span>0</span></p>
+                    <p><strong>交易时间：</strong>最长1天</p>
+                   
+                    <p><strong>收益率：</strong><span>合理</span></p>
+					 <p class="p"><strong>可交易时间：</strong>不同资产时间不同，最长7*24*365天</p>
+                </div>
+                <div class="bottom">
+                	<span>标准期权</span>
+                	<a href="/index.php?m=content&c=index&a=show&catid=13&id=2" class="a"><i>●</i>标准期权交易规则</a>
+                    <a href="/trading.html"><input type="button" class="btn" value="开始交易"></a>
+                </div>
+            </li>
+            <li class="li2">
+            	<h2>
+                	<strong>智能跟单</strong>
+                    <span>自动交易机器人</span>
+                </h2>
+                <div class="zhong">
+                	<p><strong>低门槛：</strong><span>5元</span>开始交易</p>
+                    <p><strong>手续费：</strong><span>0</span></p>
+                    <p><strong>交易时间：</strong>全天</p>
+                    <p><strong>交易规则：</strong>智能跟取交易高手 </p>
+                    <p class="p"><strong>可交易时间：</strong>不同资产时间不同，最长7*24*365天</p>
+                </div>
+                <div class="bottom">
+                	<span>智能跟单</span>
+                	<a href="/index.php?m=content&c=index&a=show&catid=13&id=9" class="a"><i>●</i>智能跟单详细说明</a>
+                   <a href="/trading.html"><input type="button" class="btn" value="开始交易"></a>
+                </div>
+            </li>
+            <li class="li3">
+            	<h2>
+                	<strong>梯形图</strong>
+                    <span>只要判断涨跌</span>
+                </h2>
+                <div class="zhong">
+                	<p><strong>低门槛：</strong><span>25元</span>开始交易</p>
+                    <p><strong>交易时间：</strong><span>15-20</span>小时 </p>
+                    <p><strong>收益率：</strong>合理</p>
+                    <p><strong>交易特点：</strong><span>23</span>只要判断涨跌</p>
+                    <p class="p"><strong>交易规则：</strong>在<span>15分钟</span>内达到目标点位</p>
+                </div>
+                <div class="bottom">
+                	<span>梯形图</span>
+                	<a href="/index.php?m=content&c=index&a=show&catid=13&id=7" class="a"><i>●</i>梯形图交易规则</a>
+                   <a href="/trading.html"><input type="button" class="btn" value="开始交易"></a>
+                </div>
+            </li>
+            <li class="li4">
+            	<h2>
+                	<strong>60秒期权 <img src="{pubimg('hot.png')}"></strong>
+                    <span>一个账户  多个品种</span>
+                </h2>
+                <div class="zhong">
+                	<p><strong>低门槛：</strong><span>5元</span>开始交易</p>
+                    <p><strong>手续费：</strong><span>0</span></p>
+                    <p><strong>交易时间：</strong>全天</p>
+                    <p><strong>收益率：</strong>合理</p>
+                    <p class="p"><strong>可交易时间：</strong>不同资产时间不同，最长7*24*365天</p>
+                    
+                </div>
+                <div class="bottom">
+                	<span>60秒期权</span>
+                	<a href="/index.php?m=content&c=index&a=show&catid=13&id=3" class="a"><i>●</i>60秒期权交易规则</a>
+                    <a href="/trading.html"><input type="button" class="btn" value="开始交易"></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+	
+<div class="indFutMod indFutMod3">
+        <div class="box1">
+            <div class="box1con">
+                <h1 class="title">伍元优势</h1>
+                <h2>双向交易  T+0交易模式</h2>
+                <ul class="list">
+                    <li><a href="{$CATEGORYS[13][url]}">了解交易规则</a></li>
+                    <li><a href="/trading.html">我要交易</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="box2 indFutMod2Main">
+           <ul class="indFutMod2List indFutMod3List">
+                <li class="each">
+                    <div class="con">
+                        <div class="line1">
+                            <span class="attrs">
+								<span class="indFutAttrItem name" onclick="seltab(1,'.tablist1',this)">规则优势</span>
+								<span class="indFutAttrItem" onclick="seltab(2,'.tablist1',this)">数据优势</span>
+                                <span class="indFutAttrItem" onclick="seltab(3,'.tablist1',this)">资金优势</span>
+								<span class="indFutAttrItem" onclick="seltab(4,'.tablist1',this)">成本优势</span>
+                            </span>
+                        </div>
+                        <div class="shou_six tablist1">    
+                        	<p class="tab1">T+0到时间结算，方便快捷，一部手机上下班路上，吃饭娱乐中都可以完成交易，最低时间只需要60秒即可</p>
+                        	<p class="tab2">路透社直连数据，与国际数据同步，透明公开公正</p>
+                        	<p class="tab3">安全可靠，风险可控，资金需求小 5元人民币即可操作</p>
+                        	<p class="tab4">没有手续费 没有点差</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="each last" style="border-bottom:1px solid #DCDCDC;">
+                    <div class="con">
+                        <div class="line1">
+                            <span class="attrs">
+								<span class="indFutAttrItem name" onclick="seltab(1,'.tablist2',this)">资产优势</span>
+                                <span class="indFutAttrItem" onclick="seltab(2,'.tablist2',this)">时间优势</span>
+                                <span class="indFutAttrItem" onclick="seltab(3,'.tablist2',this)">服务优势</span>
+								<span class="indFutAttrItem" onclick="seltab(4,'.tablist2',this)">出金优势</span>
+								<span class="indFutAttrItem" onclick="seltab(5,'.tablist2',this)">设备优势</span>
+                            </span>
+                        </div>
+                        <div class="shou_six tablist2">    
+                        	<p class="tab1">股票  股指 现货 期货 外汇 虚拟货币多达100多种资产7*24*365天交易</p>
+                        	<p class="tab2">7*24*365天不间断，周末也可以交易，完全符合国际市场的交易制度</p>
+                        	<p class="tab3">可以申诉，对交易有异议可以随时申诉</p>
+                        	<p class="tab4">T+0出金，出金0手续费，速度如火箭</p>
+                        	<p class="tab5">一部手机  一台电脑 能上网即可完成交易</p>
+                        </div>
+                    </div>
+                </li>
+				<div class="youshi_bottom">
+					<div class="btn chongzhi"><a href="/deposit.html">立即充值</a></div>
+					<p>5元即可交易，最快60秒完成交易！</p>
+					<div class="clear"></div>
+				</div>
+            </ul>
+
+        </div>
+        <div class="box3">
+           	<div class="furIndTitWrap indFutModTit2"><span class="furIndTit">交易广播</span></div>
+           	<div class="indFutModTit3RList gonggao">
+				<ul style="margin-top: -74px;">
+					<?php tradingrb(); ?>
+				</ul>
+			</div>
+        </div>
+    </div>
+
+<div class="caseBox" style="display:none">
+	<div class="cWarp case">
+		<h2>客户反馈</h2>
+		<ul>
+			{pc:content action="lists" catid="8" num="20"}
+			{loop $data $v}
+				<li {if $n==1}class="first"{/if}>
+					<div class="pic"><img src="{$v[thumb]}" /></div>
+					<div class="name">{$v[title]}</div>
+					<div class="content">{$v[description]}</div>
+				</li>
+				<li>
+					<div class="pic"><img src="{$v[thumb]}" /></div>
+					<div class="name">{$v[title]}</div>
+					<div class="content">{$v[description]}</div>
+				</li>
+				<li>
+					<div class="pic"><img src="{$v[thumb]}" /></div>
+					<div class="name">{$v[title]}</div>
+					<div class="content">{$v[description]}</div>
+				</li>
+				<li>
+					<div class="pic"><img src="{$v[thumb]}" /></div>
+					<div class="name">{$v[title]}</div>
+					<div class="content">{$v[description]}</div>
+				</li>
+			{/loop}
+			{/pc}
+			<div class="clear"></div>
+		</ul>
+	</div>
+</div>
+
+<div class="online" id="onlineModel" style="background:url('http://image.xiaoniu88.com/static/WebXn/dist/images/portal/index2016/activity-bg-400million-img.png') center center no-repeat;">
+		<div class="container">
+			<div class="box">
+				<div class="info">安全保障</div>
+				<div class="detail"><a href="{$CATEGORYS[41][url]}" target="_blank">更多新闻</a></div>
+			</div>
+			<div class="content">
+				<div class="items">
+					<div class="item">
+						<div class="img-box" data-key="SYxn01">
+							<ul>
+							{pc:content action="lists" catid="11" num="1" order="id desc"}
+								{loop $data $v}
+									<li><a target="_blank" href="{$v[url]}"><img width="291px" height="130px" src="{thumb($v[thumb],291,130)}"></a></li>
+								{/loop}
+							{/pc}
+							</ul>
+						</div>
+						<div class="about">
+							<div class="name">{$CATEGORYS[11][catname]}</div>
+							<div class="more"><a href="{$CATEGORYS[11][url]}" target="_blank">更多&gt;&gt;</a></div>
+						</div>
+						<ul class="articleList">
+							{pc:content action="lists" catid="11" start="1" num="4" order="id desc"}
+								{loop $data $v}
+									<li>
+										<i class="icon icon-li-img"></i>
+										<a target="_blank" href="{$v[url]}" title="{$v[title]}">{$v[title]}</a>
+									</li>
+								{/loop}
+							{/pc}
+						</ul>
+					</div>
+					<div class="item">
+						<div class="img-box" data-key="SYxn02">
+							<ul>
+							{pc:content action="lists" catid="9" num="1" order="id desc"}
+								{loop $data $v}
+									<li><a target="_blank" href="{$v[url]}"><img width="291px" height="130px" src="{thumb($v[thumb],291,130)}"></a></li>
+								{/loop}
+							{/pc}
+							</ul>
+						</div>
+						<div class="about">
+							<div class="name">{$CATEGORYS[9][catname]}</div>
+							<div class="more"><a href="{$CATEGORYS[9][url]}" target="_blank">更多&gt;&gt;</a></div>
+						</div>
+						<ul class="articleList">
+							{pc:content action="lists" catid="9" start="1" num="4" order="id desc"}
+								{loop $data $v}
+									<li>
+										<i class="icon icon-li-img"></i>
+										<a target="_blank" href="{$v[url]}" title="{$v[title]}">{$v[title]}</a>
+									</li>
+								{/loop}
+							{/pc}
+						</ul>
+					</div>
+					<div class="item last">
+						<div class="img-box" data-key="SYxn03">
+							<ul>
+							{pc:content action="lists" catid="10" num="1" order="id desc"}
+								{loop $data $v}
+									<li><a target="_blank" href="{$v[url]}"><img width="291px" height="130px" src="{thumb($v[thumb],291,130)}"></a></li>
+								{/loop}
+							{/pc}
+							</ul>
+						</div>
+						<div class="about">
+							<div class="name">{$CATEGORYS[10][catname]}</div>
+							<div class="more"><a href="{$CATEGORYS[10][url]}" target="_blank">更多&gt;&gt;</a></div>
+						</div>
+						<ul class="articleList">
+							{pc:content action="lists" catid="10" start="1" num="4" order="id desc"}
+								{loop $data $v}
+									<li>
+										<i class="icon icon-li-img"></i>
+										<a target="_blank" href="{$v[url]}" title="{$v[title]}">{$v[title]}</a>
+									</li>
+								{/loop}
+							{/pc}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="fankui">
+	<div class="box box-2 ani">
+		<div class="hbox">
+			<h3>大家如是说</h3>
+		</div>
+		<div class="interview">
+			<ul class="interview-list clearfix" id="video-list">
+			{pc:content action="lists" catid="12" num="20"}
+				{loop $data $v}
+				<li class="il-{$n} tongji">
+					<a href="{$v[url]}">
+						<img src="{thumb($v[thumb],192,242)}" alt="{$v[title]}">
+						<div class="interview-txt">
+							<h4>{$v[title]}</h4>
+							<p>{$v[description]}</p>
+						</div>
+						<i class="i-play"></i>
+					</a>
+				</li>
+				{/loop}
+			{/pc}
+			
+			</ul>
+		</div>
+	</div>
+	
+	<div class="clear"></div>
+</div>
+<div class="odds">
+	<div class="hcwrap">
+        <h2>伍元交易优势比较</h2>
+        <div class="oddswrap">
+        	<div class="oddsleft">
+            	<div class="oddleft_wrap" style="width: 1244px; left: -311px;">
+                	
+                    <div class="futures">
+                        <div class="futures_hd">
+                            <img src="{pubimg('futuresicon.png')}" width="60" height="60">
+                            <dl>
+                                <dt>期货投资</dt>
+                                <dd>风险投资产品</dd>
+                            </dl>
+                        </div>
+                        <div class="rate1">
+                            <dl>
+                                <dt>投资回报率</dt>
+                                <dd>合理</dd>
+                            </dl>
+                        </div>
+                        <div class="fairness1">
+                            <dl>
+                                <dt>交易公平性</dt>
+                                <dd>一般</dd>
+                            </dl>
+                        </div>
+                        <ul class="invest clear">
+                            <li>交易品种：繁多</li>
+                            <li>交易机会：涨跌双向，会跳空</li>
+                            <li>交易周期：非连续时间段</li>
+                            <li>交易成本：双边手续费</li>
+                        </ul>
+                    </div><!--futures end-->
+                    
+                    <div class="futures">
+                        <div class="futures_hd1">
+                            <img src="{pubimg('stockicon.png')}" width="60" height="60">
+                            <dl>
+                                <dt>股票投资</dt>
+                                <dd>全民理财产品</dd>
+                            </dl>
+                        </div>
+                        <div class="rate2">
+                            <dl>
+                                <dt>投资回报率</dt>
+                                <dd>一般</dd>
+                            </dl>
+                        </div>
+                        <div class="fairness2">
+                            <dl>
+                                <dt>交易公平性</dt>
+                                <dd>低</dd>
+                            </dl>
+                        </div>
+                        <ul class="invest clear">
+                            <li>交易品种：繁多</li>
+                            <li>交易机会：单一，只能买涨</li>
+                            <li>交易周期：4小时，T+1</li>
+                            <li>交易成本：较少</li>
+                        </ul>
+                    </div><!--futures end-->
+                    
+                
+                	
+                    <div class="futures">
+                        <div class="futures_hd">
+                            <img src="{pubimg('futuresicon.png')}" width="60" height="60">
+                            <dl>
+                                <dt>期货投资</dt>
+                                <dd>风险投资产品</dd>
+                            </dl>
+                        </div>
+                        <div class="rate1">
+                            <dl>
+                                <dt>投资回报率</dt>
+                                <dd>合理</dd>
+                            </dl>
+                        </div>
+                        <div class="fairness1">
+                            <dl>
+                                <dt>交易公平性</dt>
+                                <dd>一般</dd>
+                            </dl>
+                        </div>
+                        <ul class="invest clear">
+                            <li>交易品种：繁多</li>
+                            <li>交易机会：涨跌双向，会跳空</li>
+                            <li>交易周期：非连续时间段</li>
+                            <li>交易成本：双边手续费</li>
+                        </ul>
+                    </div><!--futures end-->
+                    
+                    <div class="futures">
+                        <div class="futures_hd1">
+                            <img src="{pubimg('stockicon.png')}" width="60" height="60">
+                            <dl>
+                                <dt>股票投资</dt>
+                                <dd>全民理财产品</dd>
+                            </dl>
+                        </div>
+                        <div class="rate2">
+                            <dl>
+                                <dt>投资回报率</dt>
+                                <dd>一般</dd>
+                            </dl>
+                        </div>
+                        <div class="fairness2">
+                            <dl>
+                                <dt>交易公平性</dt>
+                                <dd>低</dd>
+                            </dl>
+                        </div>
+                        <ul class="invest clear">
+                            <li>交易品种：繁多</li>
+                            <li>交易机会：单一，只能买涨</li>
+                            <li>交易周期：4小时，T+1</li>
+                            <li>交易成本：较少</li>
+                        </ul>
+                    </div><!--futures end-->
+                    
+                </div>
+            </div>
+        
+        	<div class="odds_center">
+            	<div class="odds_hd">
+                	<a href="/"><img src="{pubimg('logo-blue.png')}" width="175" height="42"></a>
+                </div>
+                <div class="rate">
+                	<dl>
+                    	<dt>投资回报率</dt>
+                        <dd>合理</dd>
+                    </dl>
+                </div>
+                <div class="fairness">
+                	<dl>
+                    	<dt>交易公平性</dt>
+                        <dd>公平</dd>
+                    </dl>
+                </div>
+				<div class="clear"></div>
+                <ul class="odds_list">
+                	<li>交易品种：股票/商品/外汇/指数</li>
+                    <li>交易机会：涨跌双向 (只看方向)</li>
+                    <li>交易周期：24小时，T+0</li>
+                    <li>交易成本：0手续费/0点差</li>
+                </ul>
+                <p class="explain"><img src="{pubimg('explain.png')}"></p>
+            </div>
+            
+            <div class="oddsright">
+            	<div class="oddright_wrap" style="width: 1244px; left: -311px;">
+                	
+                    	<div class="exchange">
+                        	<div class="futures_hd">
+                            	<img src="http://www.hpoption.com/wp-content/themes/spotoption-widescreen/images/exchangeicon.png" width="60" height="60">
+                                <dl>
+                                	<dt>外汇投资</dt>
+                                    <dd>国际投资产品</dd>
+                                </dl>
+                            </div>
+                            <div class="rate1">
+                                <dl>
+                                    <dt>投资回报率</dt>
+                                    <dd>合理</dd>
+                                </dl>
+                            </div>
+                            <div class="fairness1">
+                                <dl>
+                                    <dt>交易公平性</dt>
+                                    <dd>公平</dd>
+                                </dl>
+                            </div>
+                            <ul class="invest clear">
+                                <li>交易品种：货币对</li>
+                                <li>交易机会：涨跌双向</li>
+                                <li>交易周期：24小时，T+0</li>
+                                <li>交易成本：点差</li>
+                            </ul>
+                        </div><!--exchange end-->
+                        
+                        <div class="exchange">
+                        	<div class="futures_hd1">
+                            	<img src="http://www.hpoption.com/wp-content/themes/spotoption-widescreen/images/metals.png" width="60" height="60">
+                                <dl>
+                                	<dt>贵金属投资</dt>
+                                    <dd>高杠杆投资产品</dd>
+                                </dl>
+                            </div>
+                            <div class="rate2">
+                                <dl>
+                                    <dt>投资回报率</dt>
+                                    <dd>合理</dd>
+                                </dl>
+                            </div>
+                            <div class="fairness2">
+                                <dl>
+                                    <dt>交易公平性</dt>
+                                    <dd>公平</dd>
+                                </dl>
+                            </div>
+                            <ul class="invest clear">
+                                <li>交易品种：单一</li>
+                                <li>交易机会：涨跌双向</li>
+                                <li>交易周期：24小时，T+0</li>
+                                <li>交易成本：很高</li>
+                            </ul>
+                        </div><!--exchange end-->
+                    
+                
+                	
+                    	<div class="exchange">
+                        	<div class="futures_hd">
+                            	<img src="http://www.hpoption.com/wp-content/themes/spotoption-widescreen/images/exchangeicon.png" width="60" height="60">
+                                <dl>
+                                	<dt>外汇投资</dt>
+                                    <dd>国际投资产品</dd>
+                                </dl>
+                            </div>
+                            <div class="rate1">
+                                <dl>
+                                    <dt>投资回报率</dt>
+                                    <dd>合理</dd>
+                                </dl>
+                            </div>
+                            <div class="fairness1">
+                                <dl>
+                                    <dt>交易公平性</dt>
+                                    <dd>公平</dd>
+                                </dl>
+                            </div>
+                            <ul class="invest clear">
+                                <li>交易品种：货币对</li>
+                                <li>交易机会：涨跌双向</li>
+                                <li>交易周期：24小时，T+0</li>
+                                <li>交易成本：点差</li>
+                            </ul>
+                        </div><!--exchange end-->
+                        
+                        <div class="exchange">
+                        	<div class="futures_hd1">
+                            	<img src="http://www.hpoption.com/wp-content/themes/spotoption-widescreen/images/metals.png" width="60" height="60">
+                                <dl>
+                                	<dt>贵金属投资</dt>
+                                    <dd>高杠杆投资产品</dd>
+                                </dl>
+                            </div>
+                            <div class="rate2">
+                                <dl>
+                                    <dt>投资回报率</dt>
+                                    <dd>合理</dd>
+                                </dl>
+                            </div>
+                            <div class="fairness2">
+                                <dl>
+                                    <dt>交易公平性</dt>
+                                    <dd>公平</dd>
+                                </dl>
+                            </div>
+                            <ul class="invest clear">
+                                <li>交易品种：单一</li>
+                                <li>交易机会：涨跌双向</li>
+                                <li>交易周期：24小时，T+0</li>
+                                <li>交易成本：很高</li>
+                            </ul>
+                        </div><!--exchange end-->
+                    
+                </div>
+            </div>
+            
+        </div><!--oddswrap end-->
+		
+    </div>
+	<div class="clear"></div>
+</div>
+	
+<div id="footer_bg1">
+  <div class="container jiangzhang">
+    <ul class="clear">
+      <li>
+        <p><img src="{pubimg('jiang01.jpg')}" alt="短线外汇"><br>
+          最佳外汇交易商<br>
+          2015</p>
+      </li>
+      <li>
+        <p><img src="{pubimg('jiang02.jpg')}" alt="短线外汇"><br>
+          最佳外汇提供商<br>
+          2015</p>
+      </li>
+      <li>
+        <p><img src="{pubimg('jiang03.jpg')}" alt="短线外汇"><br>
+          最受欢迎外汇交易商<br>
+          2015</p>
+      </li>
+      <li>
+        <p><img src="{pubimg('jiang04.jpg')}" alt="短线外汇"><br>
+          最具竞争力交易商<br>
+          2015</p>
+      </li>
+      <li>
+        <p><img src="{pubimg('jiang05.jpg')}" alt="短线外汇"><br>
+          最佳客户支持交易商<br>
+          2015</p>
+      </li>
+      <li style="border:none;">
+        <p><img src="{pubimg('jiang06.jpg')}" alt="短线外汇"><br>
+          最佳服务交易商<br>
+          2015</p>
+      </li>
+    </ul>
+  </div>
+</div>
+<a href="/index.php?m=content&c=index&a=lists&catid=43" id="kaihu">期货开户</a>
+{js('myscroll.js,index.js')}
+<script>
+	$("#gonggao").sitegg();
+</script>
+{template "content","footer"}

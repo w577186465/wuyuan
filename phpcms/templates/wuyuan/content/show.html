@@ -1,0 +1,77 @@
+{template "content","header"}
+{css('news.css')}
+<div class="newWarp">
+	<div class="newLeft">
+		<div class="newSCrumbs">
+			<a href="{siteurl($siteid)}">首页</a><span> > </span>{catpos($catid)} <span>{$title}</span>
+		</div>
+
+		<div class="newContent">
+			<h1>{$title}</h1>
+			<div class="info">
+				<span class="time">
+					{$inputtime}
+				</span>		
+				<span>来源</span>
+				<a href="javascript:;" class="name">{if $show[copyfrom]}{$show[copyfrom]}{else}伍元交易{/if}</a>
+				<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>				<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+			</div>
+			
+			<div class="newArticle">
+				{$content}								<div class="npnav">					<p>上一篇：<a href="{$previous_page[url]}">{$previous_page[title]}</a></p>					<p>下一篇：<a href="{$next_page[url]}">{$next_page[title]}</a></p>				</div>				
+			</div>
+		</div>
+	</div>
+	
+	<div class="newRight">
+		<div class="newSider">
+			<h3 class="title">推荐关注</h3>
+			<div class="dingYue">
+				<img alt="" src="{pubimg('wxqrcode.jpg')}">
+				<p>关注 伍元交易 公众号<br></p>
+				<p>及时了解伍元交易动态，更有超值活动等你哦！</p>
+			</div>
+		</div>
+		<div class="newSider">
+			<h3 class="title">交易心得</h3>
+			<div class="newSList">
+				{pc:content action="lists" catid="11" num="10" order="updatetime DESC" cache="3600"}
+				{loop $data $r}
+					<li>
+						<span class="circle"></span>
+						<a href="{$r[url]}" name="titleName">{$r[title]}</a>
+					</li>
+				{/loop}
+				{/pc}
+			</div>
+		</div>
+		<div class="newSider">
+			<h3 class="title">市场分析</h3>
+			<div class="newSList">
+				{pc:content action="lists" catid="9" num="10" order="updatetime DESC" cache="3600"}
+				{loop $data $r}
+					<li>
+						<span class="circle"></span>
+						<a href="{$r[url]}" name="titleName">{$r[title]}</a>
+					</li>
+				{/loop}
+				{/pc}
+			</div>
+		</div>
+		<div class="newSider">
+			<h3 class="title">市场活动</h3>
+			<div class="newSList">
+				{pc:content action="lists" catid="10" num="10" order="updatetime DESC" cache="3600"}
+				{loop $data $r}
+					<li>
+						<span class="circle"></span>
+						<a href="{$r[url]}" name="titleName">{$r[title]}</a>
+					</li>
+				{/loop}
+				{/pc}
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+{template "content","footer"}
